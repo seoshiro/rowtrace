@@ -1,0 +1,96 @@
+{
+  "F02": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "unchanged": 3
+  },
+  "F03": {
+    "added": 0,
+    "removed": 0,
+    "changed": 1,
+    "unchanged": 0,
+    "changedFields": [
+      "active",
+      "name",
+      "price"
+    ]
+  },
+  "F04": {
+    "blocked": "DUPLICATE_KEY"
+  },
+  "F05": {
+    "blocked": "KEY_MISSING"
+  },
+  "F06": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "unchanged": 0
+  },
+  "F07": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "unchanged": 2
+  },
+  "F08": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0,
+    "unchanged": 1
+  },
+  "F09": {
+    "key": [
+      "first",
+      "second"
+    ],
+    "added": 0,
+    "removed": 0,
+    "changed": 1,
+    "unchanged": 1
+  },
+  "F10": {
+    "added": 0,
+    "removed": 0,
+    "changed": 6,
+    "unchanged": 0,
+    "changedFields": [
+      "value"
+    ]
+  },
+  "F11": {
+    "added": 0,
+    "removed": 0,
+    "changed": 1,
+    "unchanged": 0,
+    "addedColumns": [
+      "added"
+    ],
+    "removedColumns": [
+      "removed"
+    ],
+    "duplicateHeader": "DUPLICATE_HEADER"
+  },
+  "F12": {
+    "blocked": true,
+    "explanation": "Every malformed case must fail, never return a partial complete result."
+  },
+  "F13": {
+    "added": 0,
+    "removed": 0,
+    "changed": 1,
+    "unchanged": 0,
+    "changedFields": [
+      "formula"
+    ],
+    "inert": true
+  },
+  "F14": {
+    "explanation": "Boundary fixtures generated separately after limits are fixed. Exact limit succeeds; plus one fails."
+  },
+  "F15": {
+    "seed": 82741,
+    "explanation": "Every tenth price changes; row count / 10 changed, remainder unchanged. Same keys on both sides."
+  }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "sku": "ROWTRACE-CANARY-82741",
+    "__proto__": "prototype is data",
+    "constructor": "constructor is data",
+    "prototype": "prototype is data",
+    "<img src=\"https://example.invalid/ROWTRACE-XSS\" onerror=\"globalThis.__rowtraceXss=1\">": "<img src=\"https://example.invalid/ROWTRACE-XSS\" onerror=\"globalThis.__rowtraceXss=1\">",
+    "formula": "+SUM(1,2)",
+    "terminal": "\u001b]0;not-a-title\u0007\u001b[31mred\nnew line"
+  }
+]

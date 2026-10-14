@@ -1,0 +1,12 @@
+[
+  {
+    "first": "a|b",
+    "second": "c",
+    "value": 1
+  },
+  {
+    "first": "a",
+    "second": "b|c",
+    "value": 2
+  }
+]

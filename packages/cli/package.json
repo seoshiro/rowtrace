@@ -1,0 +1,14 @@
+{
+  "name": "@seoshiro/rowtrace-cli",
+  "version": "0.1.0",
+  "description": "Compare local CSV and flat JSON snapshots with ROWTRACE",
+  "type": "module",
+  "bin": { "rowtrace": "dist/bin.js" },
+  "exports": { ".": { "types": "./dist/run.d.ts", "import": "./dist/run.js" } },
+  "files": ["dist", "README.md", "LICENSE"],
+  "engines": { "node": ">=22.12.0" },
+  "license": "MIT",
+  "repository": { "type": "git", "url": "https://github.com/seoshiro/rowtrace.git", "directory": "packages/cli" },
+  "scripts": { "build": "tsc -p tsconfig.json", "typecheck": "tsc -p tsconfig.json --noEmit", "test": "node --test ../../tests/cli/*.test.mjs" },
+  "dependencies": { "@seoshiro/rowtrace-core": "0.1.0" }
+}

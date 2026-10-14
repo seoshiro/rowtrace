@@ -1,0 +1,30 @@
+{
+  "key": [
+    "sku"
+  ],
+  "before": 3,
+  "after": 3,
+  "summary": {
+    "added": 1,
+    "removed": 1,
+    "changed": 1,
+    "unchanged": 1
+  },
+  "changed": {
+    "A17": {
+      "price": {
+        "before": "14900",
+        "after": "16900"
+      }
+    }
+  },
+  "added": [
+    "C09"
+  ],
+  "removed": [
+    "B04"
+  ],
+  "unchanged": [
+    "U03"
+  ]
+}

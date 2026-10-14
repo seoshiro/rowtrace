@@ -1,0 +1,119 @@
+{
+  "generatedAt": "2026-10-14T14:44:02.512Z",
+  "gzip": "Node zlib level 9, local estimate; actual HTTP compression depends on host",
+  "classification": "Main = scripts/preloads referenced by generated index.html plus static-import closure; worker = named worker entry plus static-import closure; other JS = lazy chunks. Shared chunks appear in both main and worker totals, so categories are not additive. Static import extraction uses built-output syntax; runtime request audit separately confirms lazy behavior.",
+  "files": [
+    {
+      "path": "assets/html-CU8wt7zW.js",
+      "category": "lazy",
+      "staticImports": [],
+      "bytes": 3991,
+      "gzipBytes": 2091,
+      "sha256": "71c38587e19eb5d7b7a4d248287d2896775c4c910eae4ae50d674a6f07bd89bd"
+    },
+    {
+      "path": "assets/index-BNf0qLhm.js",
+      "category": "main",
+      "staticImports": [],
+      "bytes": 258556,
+      "gzipBytes": 80260,
+      "sha256": "5d9b92f36d3aea74d0c31d754af1a4f477fd4a4e912932442ffb976a37529fea"
+    },
+    {
+      "path": "assets/index-Cw4W7sxe.css",
+      "category": "css",
+      "staticImports": [],
+      "bytes": 19829,
+      "gzipBytes": 4708,
+      "sha256": "82ef3aaa3b93f9b641639432a4658b6a66b129429ddffe8cea0716666083b32c"
+    },
+    {
+      "path": "assets/worker-BlU7nrdu.js",
+      "category": "worker",
+      "staticImports": [],
+      "bytes": 43987,
+      "gzipBytes": 15576,
+      "sha256": "5ec7d2c3cb06071dcd848307ec4bce181eeb4dc6b4e6a6c78eb6f03a1fdd6a92"
+    },
+    {
+      "path": "demo/after.csv",
+      "category": "fixtures",
+      "staticImports": [],
+      "bytes": 92,
+      "gzipBytes": 104,
+      "sha256": "2d2e564517db535418493a7772500f73be84aeb43bae94f29759bef54dc539aa"
+    },
+    {
+      "path": "demo/before.csv",
+      "category": "fixtures",
+      "staticImports": [],
+      "bytes": 90,
+      "gzipBytes": 104,
+      "sha256": "69aa75a90a7da77da94942c2a08acc6e44dbbe59da1113ba0b5d6cd86d362c5b"
+    },
+    {
+      "path": "demo/duplicate-before.csv",
+      "category": "fixtures",
+      "staticImports": [],
+      "bytes": 94,
+      "gzipBytes": 97,
+      "sha256": "2189ab0ed8e380aa847b4c5df24e2fc9118f169e016d09b470851f53f615734c"
+    },
+    {
+      "path": "index.html",
+      "category": "other",
+      "staticImports": [],
+      "bytes": 811,
+      "gzipBytes": 482,
+      "sha256": "affc2031e68442db729e9463cb61675e08197dc05912a2a71dd17f2598e7b431"
+    },
+    {
+      "path": "version.json",
+      "category": "other",
+      "staticImports": [],
+      "bytes": 36,
+      "gzipBytes": 56,
+      "sha256": "2ba3750d2ba3b5fda7d7305f4f74288d317afca85627817fd0956df1d88250fb"
+    }
+  ],
+  "totals": {
+    "main": {
+      "bytes": 258556,
+      "gzipBytes": 80260
+    },
+    "worker": {
+      "bytes": 43987,
+      "gzipBytes": 15576
+    },
+    "lazy": {
+      "bytes": 3991,
+      "gzipBytes": 2091
+    },
+    "css": {
+      "bytes": 19829,
+      "gzipBytes": 4708
+    },
+    "fonts": {
+      "bytes": 0,
+      "gzipBytes": 0
+    },
+    "fixtures": {
+      "bytes": 276,
+      "gzipBytes": 305
+    },
+    "other": {
+      "bytes": 847,
+      "gzipBytes": 538
+    }
+  },
+  "coreWithRuntimeDependencies": {
+    "bytes": 41098,
+    "gzipBytes": 14370
+  },
+  "budgets": {
+    "initialJsGzipBytes": 204800,
+    "coreGzipBytes": 51200,
+    "mainPass": true,
+    "corePass": true
+  }
+}

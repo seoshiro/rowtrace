@@ -1,0 +1,25 @@
+[
+  {
+    "sku": "string",
+    "value": "1"
+  },
+  {
+    "sku": "number",
+    "value": 1
+  },
+  {
+    "sku": "boolean",
+    "value": false
+  },
+  {
+    "sku": "null",
+    "value": null
+  },
+  {
+    "sku": "missing"
+  },
+  {
+    "sku": "empty",
+    "value": ""
+  }
+]
