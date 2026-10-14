@@ -2,6 +2,16 @@
 
 All inputs below are synthetic. Playwright is browser automation, not manual exploratory testing. Viewports are CSS pixel configurations on Windows, not physical phones or Safari/iPhone verification. PASS applies only to the recorded source state and command; later changes require relevant checks again.
 
+## Completed production run
+
+On 2026-10-14 at 14:56:14 UTC, `npx playwright test` passed **40/40** cases in **43.9 seconds** with **0 skipped, 0 unexpected, 0 flaky, 0 retries**: Chromium 30, Firefox 5, WebKit 5. Actual Windows engines: Chromium 156.0.8078.4, Firefox 157.0, WebKit 27.2. [Compact machine evidence](../evidence/browser-validation.json) records every case, durations, browser versions, and SHA-256 hashes for the exact core/web source, fixtures and production assets. This run preceded the integration commit; RELEASE.md maps the frozen source to its release SHA and subsequent CI result.
+
+That full-run build was `index-CZItvzwB.js`, `worker-CLEdIp-8.js`, `index-Cw4W7sxe.css`. The full suite followed a targeted 6/6 pass for corrected WebKit HTML export, download focus, language retention, invalid worker request diagnosis and offline recovery. A later 2/2 layout-only run recaptured screenshots at scrollTop 0; it changed only screenshot capture, not application code. [Desktop initial](../evidence/ui/initial-1440.png), [desktop result](../evidence/ui/result-1440.png), [320px initial](../evidence/ui/initial-320.png), [320px result](../evidence/ui/result-320.png) contain synthetic data only.
+
+Production tests also cover the 199-column union of two individually valid 100-column files, a value exactly 64 KiB versus one byte above, and malformed worker envelopes. All were checked through the actual production worker boundary. No production QA hook is shipped.
+
+Review of axe's **incomplete** results found one semantic issue even with zero violations: a labeled generic filter div. It was changed only to `role="group"` (RT-08); targeted post-change axe + three-engine contract checks passed **4/4 in 8.9 seconds**, evidence [axe-validation.json](../evidence/axe-validation.json), updated main asset `index-BGjeNMHE.js`. The remaining incomplete contrast checks refer solely to decorative `aria-hidden` glyphs beside explicit text controls/statuses; they do not carry required information. No rule was excluded. Exact-release CI runs the full suite again after this semantic-only markup change; earlier performance figures retain their original artifact fingerprints.
+
 ## Baseline
 
 - Host: Windows, local project workspace. Node/npm versions and exact release SHA are recorded in RELEASE.md.
@@ -18,22 +28,22 @@ All inputs below are synthetic. Playwright is browser automation, not manual exp
 | Q00 | Windows / Node | Generate F01–F13 from fixed synthetic definitions | Small independent fixtures | Generator exit 0 | PASS | Initial worktree, before release commit | `node fixtures/qa/generate.mjs` |
 | Q01 | Windows / ESLint | Lint QA files | No lint findings | Exit 0 | PASS | Initial worktree | `npx eslint fixtures/qa tests/e2e playwright.config.ts` |
 | Q02 | Windows / TypeScript strict | Typecheck QA including config | No TS errors | Exit 0 | PASS | Initial worktree | `npx tsc -p tests/e2e/tsconfig.json` |
-| Q03 | Production / three engines | F01 golden, details, filters, JSON/HTML | Correct counts and exact string prices | Awaiting production build | NOT TESTED | Pending | `tests/e2e/contract.spec.ts` |
-| Q04 | Production / three engines | CSV import, duplicates, correction | Blocking diagnostic, successful recovery | Awaiting production build | NOT TESTED | Pending | `tests/e2e/contract.spec.ts` |
-| Q05 | Production / three engines | F07/F08/F09/F10 | Unicode/quotes/composite keys/types preserved | Awaiting production build | NOT TESTED | Pending | `tests/e2e/contract.spec.ts` |
-| Q06 | Production / Chromium | F13 XSS/prototype names, exported HTML offline | Inert text, no unexpected requests | Awaiting production build | NOT TESTED | Pending | `tests/e2e/security.spec.ts` |
-| Q07 | Production / Chromium | Canary in input, inspect requests/storage/URL, refresh | No canary transmission/persistence; reset on refresh | Awaiting production build | NOT TESTED | Pending | `tests/e2e/security.spec.ts` |
-| Q08 | Production / Chromium + axe | Initial/result/blocking diagnostics | No applicable axe findings | Awaiting production build | NOT TESTED | Pending | `tests/e2e/security.spec.ts` |
-| Q09 | Production / Chromium | Storage denied, createObjectURL failure | Core flow continues; export can retry | Awaiting production build | NOT TESTED | Pending | `tests/e2e/security.spec.ts` |
-| Q10 | Production / Chromium | Local import after loaded shell becomes offline | Correct diff and self-contained report | Awaiting production build | NOT TESTED | Pending | `tests/e2e/security.spec.ts` |
-| Q11 | Production / Chromium | F12 malformed input, file above 16 MiB | Concrete failure, no partial success, recovery | Awaiting production build | NOT TESTED | Pending | `tests/e2e/lifecycle.spec.ts` |
-| Q12 | Production / Chromium | 125 rows, pages/sort then replace input | Correct page boundaries; stale report invalidated | Awaiting production build | NOT TESTED | Pending | `tests/e2e/lifecycle.spec.ts` |
-| Q13 | Production / Chromium | Controlled first-job delay, cancel, injected stale completion | Worker terminated; newer result survives | Awaiting production build | NOT TESTED | Pending | `tests/e2e/lifecycle.spec.ts` |
-| Q14 | Production / Chromium | Block worker asset, retry | Visible recoverable error | Awaiting production build | NOT TESTED | Pending | `tests/e2e/lifecycle.spec.ts` |
-| Q15 | Production / Chromium | Repeated reset/download and separate context | Object URLs revoked; contexts isolated | Awaiting production build | NOT TESTED | Pending | `tests/e2e/lifecycle.spec.ts` |
-| Q16 | Production / Chromium | 320,360,390,430,768,1280,1440,1920 widths + landscape | No page overflow; details/export/error accessible | Awaiting production build | NOT TESTED | Pending | `tests/e2e/layout.spec.ts` |
-| Q17 | Production / Chromium | RU/EN/KK switch with search and selection | State/report retained | Awaiting production build | NOT TESTED | Pending | `tests/e2e/layout.spec.ts` |
-| Q18 | Production / Chromium | Keyboard activation, reduced motion, long values | Usable controls, focus and full content | Awaiting production build | NOT TESTED | Pending | `tests/e2e/layout.spec.ts` |
+| Q03 | Production / three engines | F01 golden, details, filters, JSON/HTML | Correct counts and exact string prices | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/contract.spec.ts` |
+| Q04 | Production / three engines | CSV import, duplicates, correction | Blocking diagnostic, successful recovery | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/contract.spec.ts` |
+| Q05 | Production / three engines | F07/F08/F09/F10 | Unicode/quotes/composite keys/types preserved | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/contract.spec.ts` |
+| Q06 | Production / Chromium | F13 XSS/prototype names, exported HTML offline | Inert text, no unexpected requests | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/security.spec.ts` |
+| Q07 | Production / Chromium | Canary in input, inspect requests/storage/URL, refresh | No canary transmission/persistence; reset on refresh | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/security.spec.ts` |
+| Q08 | Production / Chromium + axe | Initial/result/blocking diagnostics | Zero axe violations; incomplete checks separately reviewed | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/security.spec.ts` |
+| Q09 | Production / Chromium | Storage denied, createObjectURL failure | Core flow continues; export can retry | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/security.spec.ts` |
+| Q10 | Production / Chromium | Export already-loaded report offline; new worker failure then online recovery | Inert standalone HTML; explicit worker failure; recovery | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/security.spec.ts` |
+| Q11 | Production / Chromium | F12 malformed input, file above 16 MiB | Concrete failure, no partial success, recovery | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/lifecycle.spec.ts` |
+| Q12 | Production / Chromium | 125 rows, pages/sort then replace input | Correct page boundaries; stale report invalidated | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/lifecycle.spec.ts` |
+| Q13 | Production / Chromium | Controlled first-job delay, cancel, injected stale completion | Worker terminated; newer result survives | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/lifecycle.spec.ts` |
+| Q14 | Production / Chromium | Block worker asset, retry | Visible recoverable error | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/lifecycle.spec.ts` |
+| Q15 | Production / Chromium | Repeated reset/download and separate context | Object URLs revoked; contexts isolated | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/lifecycle.spec.ts` |
+| Q16 | Production / Chromium | 320,360,390,430,768,1280,1440,1920 widths + landscape | No page overflow; details/export/error accessible | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/layout.spec.ts` |
+| Q17 | Production / Chromium | RU/EN/KK switch with search and selection | State/report retained | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/layout.spec.ts` |
+| Q18 | Production / Chromium | Keyboard activation, reduced motion, long values | Usable controls, focus and full content | Passed production assertions; see recorded cases | PASS | Frozen release source; SHA-256 in evidence | `tests/e2e/layout.spec.ts` |
 
 ## Manual and environment boundaries
 
@@ -50,6 +60,8 @@ All inputs below are synthetic. Playwright is browser automation, not manual exp
 | CSV spreadsheet export | Export UI | Formula protection | Applicable only if shipped | Only JSON and inert HTML exported | N/A | v0.1 scope | Public export API |
 
 No axe result constitutes WCAG certification, no laboratory timing proves field p75 Web Vitals, and zero observed canary requests does not prove absence of every possible leak.
+
+New imports after going offline may need to fetch a newly created worker module and are not guaranteed. The checked Chromium context showed a clear WORKER_ERROR and recovered after reconnecting. Already loaded report export and the downloaded self-contained HTML were checked offline. This is a declared boundary, not a promise of an offline application shell.
 
 ## Reproduction
 

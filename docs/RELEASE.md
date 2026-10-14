@@ -18,6 +18,8 @@ The configured machine has no npm login (`npm whoami` returned ENEEDAUTH). Names
 
 ## Release procedure
 
+Pre-publication evidence: Windows Node24.18.0, core20 tests, CLI10 tests, independent packed consumer and production browser40/40 (30 Chromium156.0.8078.4,5 Firefox157.0,5 WebKit27.2), with no browser retries/skips. `evidence/browser-validation.json` fingerprints the frozen source/build; measured core/browser evidence is in PERFORMANCE.md. Final clean-checkout, CI SHA, deployment and live results will be recorded below when executed.
+
 1. Inspect source diff, dependency audit, secret scan and package contents.
 2. Run lint, build, strict typechecks, semantic tests, CLI tests, packed consumer and production browser tests.
 3. Commit and push to the existing public repository. CI repeats checks from clean checkouts on standard Ubuntu and Windows runners.

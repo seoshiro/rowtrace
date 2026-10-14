@@ -142,6 +142,27 @@ test('fatal malformed worker reply clears unusable preview and supports reload',
   await upload(page, 'F01/before.csv', 'F01/after.csv'); await assertGolden(page);
 });
 
+test('invalid worker request with valid envelope returns diagnostic instead of hanging', async ({ page }) => {
+  await page.addInitScript(() => {
+    const Original = window.Worker;
+    window.Worker = class extends Original {
+      constructor(url: string | URL, options?: WorkerOptions) {
+        super(url, options);
+        const post = this.postMessage.bind(this);
+        this.postMessage = (message: unknown) => {
+          if (typeof message === 'object' && message !== null && 'type' in message && message.type === 'compare') {
+            post({ ...message, ignored: Array.from({ length: 101 }, (_, i) => `column${i}`) });
+          } else post(message);
+        };
+      }
+    };
+  });
+  await open(page); await upload(page, 'F01/before.csv', 'F01/after.csv');
+  await expect(page.getByRole('alert')).toContainText('INVALID_CONFIG');
+  await expect(page.getByRole('button', { name: 'Cancel', exact: true })).not.toBeVisible();
+  await demo(page); await assertGolden(page);
+});
+
 test('two contexts and repeated reset retain no files or object URLs', async ({ page, browser }) => {
   await page.addInitScript(() => {
     const urls = new Set<string>(); const create = URL.createObjectURL; const revoke = URL.revokeObjectURL;

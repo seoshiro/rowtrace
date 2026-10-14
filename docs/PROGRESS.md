@@ -13,12 +13,12 @@
 
 | Stage | Status | Evidence / next action |
 |---|---|---|
-| A — contracts and research | IN PROGRESS | Full requirements read; research/core agents defining API and exact semantics |
-| B — implementation and automatic checks | PENDING | Core, CLI/consumer, web, independent fixtures/QA assigned distinct ownership |
-| C — exploratory browser pass | PENDING | Production preview required |
-| D — fixes/security/performance | PENDING | Measure only actual runs |
-| E — packaging/release validation | PENDING | Tarball install outside workspace required |
-| F — free deployment/live checks | PENDING | GitHub Pages public repo candidate; exact SHA CI and two fresh live contexts required |
+| A - contracts and research | COMPLETE | Both specifications, current projects, analogues and official documentation reviewed; API and semantics implemented |
+| B - implementation and automatic checks | COMPLETE | Core20 and CLI10 tests pass; production browser suite40/40 passes without retries/skips |
+| C - exploratory browser pass | BLOCKED | Browser-control runtime fails before startup; automated browser checks and pixel review are separate evidence |
+| D - fixes/security/performance | COMPLETE | Scoped security audit, stable core benchmark and fingerprint-checked browser lab complete; limitations documented |
+| E - packaging/release validation | IN PROGRESS | Independent tarball consumer passed; final clean checkout and exact commit validation pending |
+| F - free deployment/live checks | PENDING | Public repository created; exact SHA CI, Pages and two fresh live automation passes pending |
 
 ## Resume and current evidence
 
@@ -26,12 +26,16 @@ The user paused work to clarify the product; all six agents were interrupted. No
 
 - Public repository created: https://github.com/seoshiro/rowtrace (no duplicate repository). Existing portfolio/apps remain untouched.
 - Compiler selection is TypeScript **6.0.3**: latest7.0.2 did not meet typescript-eslint's supported peer range. ESLint10.12.0 and matching @eslint/js10 are supported; no peer bypass used.
-- Core build and20 contract/security tests passed during development. A Unicode source-size accounting gap and report-envelope budget were fixed; JSON serialization allocation optimization is under matched benchmark rerun.
+- Core build and20 contract/security tests passed. A Unicode source-size accounting gap and report-envelope budget were fixed; JSON serialization allocation optimization has matched baseline/final measurements.
 - CLI10 integration cases passed on actual Windows Node24.18.0, including hardlink/input-overwrite protection and cancellation. Packed consumer installed both tarballs outside monorepo, compiled declarations, ran API/bin parity and output protection; final integrated run still required.
 - Runtime and full npm audit returned zero known vulnerabilities. Scoped heuristic secret scan returned no findings; this is not a complete account or historical secret audit.
-- Synthetic F01-F15 and browser test matrix prepared. Chromium/Firefox/WebKit binaries installed locally. Web build and actual E2E runs pending final integration.
+- Synthetic F01-F15 and browser test matrix executed. Chromium/Firefox/WebKit production E2E passed40/40; installed browser versions and source fingerprints are recorded with evidence.
 - Real browser-control tool retry after resume still fails before browser startup: `MXC launcher: cannot locate required Windows platform directory`, HRESULT0x80070003. Manual exploratory remains BLOCKED; automation is recorded separately.
 - Financial design: public static GitHub Pages, standard public Actions runners, no backend/DB/API/credentials/telemetry/uploads of chosen files. Optional Actions caches and test artifact uploads removed. Required Pages artifact retention1day, static size cap2MiB. Official conditions and remaining account-wide limits documented in COSTS.md.
 - npm identity check returned ENEEDAUTH. No npm publication claimed or credentials sought; tarballs and demo proceed independently.
 
-Next: integrate browser work, run risk-based production checks, finish measured performance/security audit, inspect release contents, then commit and execute exact-SHA CI/deploy/live tests.
+Initial implementation commit: `f32a6b734fc3c066bed85a64798906601d9a842c`. Final browser QA found and drove fixes for WebKit worker HTML export and download focus, in addition to stale state, typed identity and schema-union boundaries. Closed statuses belong in DEFECTS.md after regression verification.
+
+Final browser regressions passed40/40:30 Chromium,5 Firefox,5 WebKit. Stable browser lab measured three cancellation samples13.8/15.8/19.8ms from click handler to two animation frames; this is a laboratory measurement, not a physical-device/field guarantee. Nine created workers were terminated; reset checks cover main-renderer memory, not worker peak heap.
+
+Next: inspect release contents, then execute clean-checkout and exact-SHA CI/deploy/live tests.

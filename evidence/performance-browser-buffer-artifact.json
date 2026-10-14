@@ -1,0 +1,656 @@
+{
+  "generatedAt": "2026-10-14T14:49:40.511Z",
+  "url": "http://127.0.0.1:4173/rowtrace/",
+  "browser": "156.0.8078.4",
+  "settings": {
+    "cpuRate": 4,
+    "network": {
+      "offline": false,
+      "latency": 20,
+      "downloadThroughput": 2621440,
+      "uploadThroughput": 2621440
+    },
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "headless": true,
+    "reducedMotion": "reduce"
+  },
+  "limitations": [
+    "CDP CPU throttle is a laboratory renderer model; coverage of worker CPU throttling is not independently verified.",
+    "No real mobile device, field users, p75, or field INP. LCP and layout shifts are single lab observations.",
+    "CDP JSHeapUsedSize is main renderer heap, excludes worker heap and OS RSS. Forced GC is diagnostic, not normal user behavior.",
+    "Automation input and instrumentation are not a manual exploratory pass."
+  ],
+  "cancellation": [
+    {
+      "clickHandlerAt": 18188.80000001192,
+      "clickHandlerToTwoAnimationFramesMs": 17.30000001192093,
+      "workersCreated": 2,
+      "workersTerminated": 2
+    },
+    {
+      "clickHandlerAt": 25966.400000035763,
+      "clickHandlerToTwoAnimationFramesMs": 21.19999998807907,
+      "workersCreated": 3,
+      "workersTerminated": 3
+    },
+    {
+      "clickHandlerAt": 33651.10000002384,
+      "clickHandlerToTwoAnimationFramesMs": 19.69999998807907,
+      "workersCreated": 4,
+      "workersTerminated": 4
+    }
+  ],
+  "memoryCycles": [
+    {
+      "iteration": 0,
+      "complete": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 257,
+          "Nodes": 1221,
+          "JSHeapUsedSize": 3984616,
+          "JSHeapTotalSize": 4595712
+        },
+        "workers": {
+          "created": 5,
+          "terminated": 4
+        }
+      },
+      "afterReset": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 181,
+          "Nodes": 241,
+          "JSHeapUsedSize": 3845952,
+          "JSHeapTotalSize": 4333568
+        },
+        "workers": {
+          "created": 5,
+          "terminated": 5
+        }
+      }
+    },
+    {
+      "iteration": 1,
+      "complete": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 257,
+          "Nodes": 1221,
+          "JSHeapUsedSize": 4003148,
+          "JSHeapTotalSize": 4595712
+        },
+        "workers": {
+          "created": 6,
+          "terminated": 5
+        }
+      },
+      "afterReset": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 181,
+          "Nodes": 241,
+          "JSHeapUsedSize": 3864080,
+          "JSHeapTotalSize": 4333568
+        },
+        "workers": {
+          "created": 6,
+          "terminated": 6
+        }
+      }
+    },
+    {
+      "iteration": 2,
+      "complete": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 257,
+          "Nodes": 1221,
+          "JSHeapUsedSize": 4040868,
+          "JSHeapTotalSize": 4595712
+        },
+        "workers": {
+          "created": 7,
+          "terminated": 6
+        }
+      },
+      "afterReset": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 181,
+          "Nodes": 241,
+          "JSHeapUsedSize": 3897660,
+          "JSHeapTotalSize": 4333568
+        },
+        "workers": {
+          "created": 7,
+          "terminated": 7
+        }
+      }
+    },
+    {
+      "iteration": 3,
+      "complete": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 257,
+          "Nodes": 1221,
+          "JSHeapUsedSize": 4052256,
+          "JSHeapTotalSize": 4595712
+        },
+        "workers": {
+          "created": 8,
+          "terminated": 7
+        }
+      },
+      "afterReset": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 181,
+          "Nodes": 241,
+          "JSHeapUsedSize": 3910468,
+          "JSHeapTotalSize": 4333568
+        },
+        "workers": {
+          "created": 8,
+          "terminated": 8
+        }
+      }
+    },
+    {
+      "iteration": 4,
+      "complete": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 257,
+          "Nodes": 1221,
+          "JSHeapUsedSize": 4064900,
+          "JSHeapTotalSize": 4595712
+        },
+        "workers": {
+          "created": 9,
+          "terminated": 8
+        }
+      },
+      "afterReset": {
+        "metrics": {
+          "Documents": 1,
+          "JSEventListeners": 181,
+          "Nodes": 241,
+          "JSHeapUsedSize": 3927300,
+          "JSHeapTotalSize": 4333568
+        },
+        "workers": {
+          "created": 9,
+          "terminated": 9
+        }
+      }
+    }
+  ],
+  "initialRequests": [
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/index-jG4Q4Eym.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/index-Cw4W7sxe.css",
+      "method": "GET",
+      "resourceType": "stylesheet"
+    }
+  ],
+  "initialMemory": {
+    "metrics": {
+      "Documents": 1,
+      "JSEventListeners": 154,
+      "Nodes": 218,
+      "JSHeapUsedSize": 1275456,
+      "JSHeapTotalSize": 1835008
+    },
+    "workers": {
+      "created": 0,
+      "terminated": 0
+    }
+  },
+  "largeFixture": {
+    "rows": 20000,
+    "columns": 3,
+    "seed": 82741,
+    "changedFraction": 1,
+    "beforeBytes": 10277784,
+    "afterBytes": 10277787
+  },
+  "processing": {
+    "start": 8981.199999988079,
+    "complete": 10142,
+    "wallMs": 1160.800000011921,
+    "pendingAtControlStart": true,
+    "controlsUsed": [
+      "language ru",
+      "language en",
+      "scroll",
+      "row detail",
+      "sort descending"
+    ],
+    "parserOrCompareRequestsBeforeControls": 2,
+    "parserOrCompareRequestsAfterControls": 2
+  },
+  "trace": {
+    "path": "evidence/performance-browser-trace.json.gz",
+    "events": 4055
+  },
+  "observations": {
+    "longTasks": [
+      {
+        "startTime": 180.19999998807907,
+        "duration": 111
+      },
+      {
+        "startTime": 1259.9000000357628,
+        "duration": 3778
+      },
+      {
+        "startTime": 5218.5,
+        "duration": 3751
+      },
+      {
+        "startTime": 9795.900000035763,
+        "duration": 77
+      },
+      {
+        "startTime": 10230,
+        "duration": 62
+      },
+      {
+        "startTime": 10795.300000011921,
+        "duration": 3557
+      },
+      {
+        "startTime": 14558.5,
+        "duration": 3520
+      },
+      {
+        "startTime": 18491,
+        "duration": 3596
+      },
+      {
+        "startTime": 22316.900000035763,
+        "duration": 3541
+      },
+      {
+        "startTime": 26248.69999998808,
+        "duration": 3550
+      },
+      {
+        "startTime": 30002.600000023842,
+        "duration": 3525
+      },
+      {
+        "startTime": 33778.10000002384,
+        "duration": 214
+      },
+      {
+        "startTime": 34014.5,
+        "duration": 199
+      },
+      {
+        "startTime": 35031.19999998808,
+        "duration": 219
+      },
+      {
+        "startTime": 35278.60000002384,
+        "duration": 257
+      },
+      {
+        "startTime": 36376.60000002384,
+        "duration": 234
+      },
+      {
+        "startTime": 36652.19999998808,
+        "duration": 239
+      },
+      {
+        "startTime": 37787.80000001192,
+        "duration": 222
+      },
+      {
+        "startTime": 38040,
+        "duration": 210
+      },
+      {
+        "startTime": 39015.19999998808,
+        "duration": 218
+      },
+      {
+        "startTime": 39264.60000002384,
+        "duration": 212
+      }
+    ],
+    "largestContentfulPaint": [
+      {
+        "startTime": 852,
+        "duration": 0
+      }
+    ],
+    "layoutShifts": [
+      {
+        "startTime": 9088.400000035763,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 9284.900000035763,
+        "duration": 0,
+        "value": 0.019166406785836764,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 9329.400000035763,
+        "duration": 0,
+        "value": 0.019166406785836764,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 9487.5,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 10600.300000011921,
+        "duration": 0,
+        "value": 0.04980586419753086,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 18125.100000023842,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 18195.80000001192,
+        "duration": 0,
+        "value": 0.0012098765432098765,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 18294.600000023842,
+        "duration": 0,
+        "value": 0.015561631944444444,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 25927.900000035763,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 25973.100000023842,
+        "duration": 0,
+        "value": 0.0012098765432098765,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 26036.600000023842,
+        "duration": 0,
+        "value": 0.015561631944444444,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 33590,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 33658.30000001192,
+        "duration": 0,
+        "value": 0.0012098765432098765,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 33722.30000001192,
+        "duration": 0,
+        "value": 0.015561631944444444,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 34258.19999998808,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 34370.30000001192,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 34962.5,
+        "duration": 0,
+        "value": 0.034241531635802465,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 35591.90000003576,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 35728.69999998808,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 36303.90000003576,
+        "duration": 0,
+        "value": 0.034241531635802465,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 36941.60000002384,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 37070.80000001192,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 37708.30000001192,
+        "duration": 0,
+        "value": 0.034241531635802465,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 38305.80000001192,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 38419.90000003576,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 38947.90000003576,
+        "duration": 0,
+        "value": 0.034241531635802465,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 39522.90000003576,
+        "duration": 0,
+        "value": 0.014006076388888887,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 39638.90000003576,
+        "duration": 0,
+        "value": 0.011369958847736625,
+        "hadRecentInput": true
+      },
+      {
+        "startTime": 40162.30000001192,
+        "duration": 0,
+        "value": 0.034241531635802465,
+        "hadRecentInput": true
+      }
+    ],
+    "messages": [
+      {
+        "type": "load",
+        "time": 9069
+      },
+      {
+        "type": "compare",
+        "time": 9586.5
+      },
+      {
+        "type": "detail",
+        "time": 10206.300000011921
+      },
+      {
+        "type": "page",
+        "time": 10316.600000023842
+      },
+      {
+        "type": "load",
+        "time": 18117.400000035763
+      },
+      {
+        "type": "load",
+        "time": 25921.5
+      },
+      {
+        "type": "load",
+        "time": 33583.19999998808
+      },
+      {
+        "type": "load",
+        "time": 34251.30000001192
+      },
+      {
+        "type": "compare",
+        "time": 34549.19999998808
+      },
+      {
+        "type": "load",
+        "time": 35585.10000002384
+      },
+      {
+        "type": "compare",
+        "time": 35900.30000001192
+      },
+      {
+        "type": "load",
+        "time": 36934.90000003576
+      },
+      {
+        "type": "compare",
+        "time": 37294.10000002384
+      },
+      {
+        "type": "load",
+        "time": 38299.19999998808
+      },
+      {
+        "type": "compare",
+        "time": 38598.69999998808
+      },
+      {
+        "type": "load",
+        "time": 39516.80000001192
+      },
+      {
+        "type": "compare",
+        "time": 39815.60000002384
+      }
+    ],
+    "workersCreated": 9,
+    "workersTerminated": 9,
+    "cancelClick": 33651.10000002384,
+    "cancelConfirmedMs": 19.69999998807907
+  },
+  "requests": [
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/",
+      "method": "GET",
+      "resourceType": "document"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/index-jG4Q4Eym.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/index-Cw4W7sxe.css",
+      "method": "GET",
+      "resourceType": "stylesheet"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    },
+    {
+      "url": "http://127.0.0.1:4173/rowtrace/assets/worker-tlnebMe3.js",
+      "method": "GET",
+      "resourceType": "script"
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
 import { open, demo, upload, downloadText, assertGolden } from './helpers';
 
+test.beforeAll(async ({ browser }, testInfo) => {
+  await testInfo.attach('browser-version.txt', { body: `${testInfo.project.name}: ${browser.version()} on ${process.platform}`, contentType: 'text/plain' });
+});
+
 test('demo golden, details, filters, empty state and deterministic export', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));

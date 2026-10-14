@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
-import { open, demo, upload, downloadText } from './helpers';
+import { open, demo, upload, fixture, downloadText } from './helpers';
 
 test('hostile text stays inert, files remain RAM-only and no canary leaves browser', async ({ page, context }) => {
   const traffic: string[] = [];
@@ -41,6 +41,12 @@ test('axe checks initial, result and blocking diagnostics without exclusions', a
     const result = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa', 'wcag22aa']).analyze();
     await testInfo.attach(`axe-${state}.json`, { body: JSON.stringify(result, null, 2), contentType: 'application/json' });
     expect(result.violations).toEqual([]);
+    // Incomplete checks are reviewed, not silently discarded. Only explicitly
+    // decorative glyph contrast remains unmeasurable by axe in this design.
+    for (const incomplete of result.incomplete) {
+      expect(incomplete.id).toBe('color-contrast');
+      for (const node of incomplete.nodes) expect(node.html).toContain('aria-hidden="true"');
+    }
   }
 });
 
@@ -59,13 +65,22 @@ test('blocked storage and failed export recover without recomputing', async ({ p
   expect(JSON.parse(await downloadText(page, 'JSON')).summary.changed).toBe(1);
 });
 
-test('offline after shell load supports local import and self-contained HTML', async ({ page, context }) => {
+test('loaded report exports offline; new worker failure is visible and recovers online', async ({ page, context }) => {
   await open(page);
   // First worker/chunk load occurs during demo. Offline shell is not claimed.
   await demo(page); await downloadText(page, 'HTML');
   await context.setOffline(true);
-  await upload(page, 'F01/before.csv', 'F01/after.csv');
   const html = await downloadText(page, 'HTML');
   expect(html).toContain('14900'); expect(html).toContain('16900');
   expect(html).not.toMatch(/<(?:script|link|img)\b/i);
+  const report = await context.newPage();
+  await report.setContent(html);
+  await expect(report.getByText('14900', { exact: false }).first()).toBeVisible();
+  await page.getByLabel('Before file', { exact: true }).setInputFiles(fixture('F01/before.csv'));
+  await page.getByLabel('After file', { exact: true }).setInputFiles(fixture('F01/after.csv'));
+  await page.getByRole('button', { name: 'Preview files', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('WORKER_ERROR');
+  await context.setOffline(false);
+  await upload(page, 'F01/before.csv', 'F01/after.csv');
+  expect(JSON.parse(await downloadText(page, 'JSON')).summary.changed).toBe(1);
 });

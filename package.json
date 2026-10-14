@@ -19,7 +19,8 @@
     "test:packed": "node scripts/packed-consumer.mjs",
     "preview": "npm run preview -w @seoshiro/rowtrace-web",
     "lint": "eslint .",
-    "scan:secrets": "node scripts/security-scan.mjs"
+    "scan:secrets": "node scripts/security-scan.mjs",
+    "verify:clean": "node scripts/clean-check.mjs"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",

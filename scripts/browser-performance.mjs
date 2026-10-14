@@ -1,13 +1,26 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, readdir, mkdtemp, unlink, rmdir } from 'node:fs/promises';
 import { dirname, resolve, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
+import { tmpdir } from 'node:os';
+import { createHash } from 'node:crypto';
 import { largePair } from '../fixtures/qa/generate.mjs';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 process.env.PLAYWRIGHT_BROWSERS_PATH ??= join(root, '.tools/ms-playwright');
 const { chromium } = await import('@playwright/test');
 const url = process.env.ROWTRACE_URL ?? 'http://127.0.0.1:4173/rowtrace/';
+const fixtureDirectory = await mkdtemp(join(tmpdir(), 'rowtrace-browser-performance-'));
+const fixturePaths = [];
+async function writePair(pair, name) {
+  const paths = ['before', 'after'].map(side => join(fixtureDirectory, `${name}-${side}.csv`));
+  await Promise.all(paths.map((path, index) => writeFile(path, index ? pair.after : pair.before)));
+  fixturePaths.push(...paths); return paths;
+}
+async function buildFingerprint() {
+  const files = (await readdir(join(root, 'apps/web/dist/assets'))).filter(name => /\.(js|css)$/.test(name)).sort();
+  return Object.fromEntries(await Promise.all(files.map(async name => [name, createHash('sha256').update(await readFile(join(root, 'apps/web/dist/assets', name))).digest('hex')])));
+}
 const browser = await chromium.launch({ headless: true });
 const context = await browser.newContext({ viewport: { width: 1440, height: 900 }, locale: 'en-US', reducedMotion: 'reduce' });
 const page = await context.newPage();
@@ -46,11 +59,11 @@ const settings = { cpuRate: 4, network: { offline: false, latency: 20, downloadT
 await cdp.send('Emulation.setCPUThrottlingRate', { rate: settings.cpuRate });
 await cdp.send('Network.enable'); await cdp.send('Network.emulateNetworkConditions', settings.network);
 await cdp.send('Performance.enable');
-const result = { generatedAt: new Date().toISOString(), url, browser: browser.version(), settings, limitations: ['CDP CPU throttle is a laboratory renderer model; coverage of worker CPU throttling is not independently verified.', 'No real mobile device, field users, p75, or field INP. LCP and layout shifts are single lab observations.', 'CDP JSHeapUsedSize is main renderer heap, excludes worker heap and OS RSS. Forced GC is diagnostic, not normal user behavior.', 'Automation input and instrumentation are not a manual exploratory pass.'], cancellation: [], memoryCycles: [] };
+const result = { generatedAt: new Date().toISOString(), url, browser: browser.version(), productionAssetSha256: await buildFingerprint(), settings, limitations: ['CDP CPU throttle is a laboratory renderer model; coverage of worker CPU throttling is not independently verified.', 'No real mobile device, field users, p75, or field INP. LCP and layout shifts are single lab observations.', 'CDP JSHeapUsedSize is main renderer heap, excludes worker heap and OS RSS. Forced GC is diagnostic, not normal user behavior.', 'Automation input and instrumentation are not a manual exploratory pass.', 'File selection uses actual temporary files; Buffer uploads inject large base64 strings through automation and distort main-thread measurements.'], cancellation: [], memoryCycles: [] };
 const button = name => page.getByRole('button', { name, exact: true });
-async function selectPair(pair) {
-  await page.getByLabel('Before file', { exact: true }).setInputFiles({ name: 'synthetic-before.csv', mimeType: 'text/csv', buffer: Buffer.from(pair.before) });
-  await page.getByLabel('After file', { exact: true }).setInputFiles({ name: 'synthetic-after.csv', mimeType: 'text/csv', buffer: Buffer.from(pair.after) });
+async function selectPair(paths) {
+  await page.getByLabel('Before file', { exact: true }).setInputFiles(paths[0]);
+  await page.getByLabel('After file', { exact: true }).setInputFiles(paths[1]);
 }
 async function previewAndCompare() {
   await button('Preview files').click();
@@ -69,10 +82,11 @@ try {
   result.initialRequests = [...requests];
   result.initialMemory = await memorySnapshot();
   const longPair = largePair(20000, 'long');
+  const longPaths = await writePair(longPair, 'long');
   const trace = [];
   cdp.on('Tracing.dataCollected', event => trace.push(...event.value));
   await cdp.send('Tracing.start', { categories: 'devtools.timeline,v8,blink.user_timing', transferMode: 'ReportEvents' });
-  await selectPair(longPair);
+  await selectPair(longPaths);
   result.largeFixture = { rows: 20000, columns: 3, seed: 82741, changedFraction: 1, beforeBytes: Buffer.byteLength(longPair.before), afterBytes: Buffer.byteLength(longPair.after) };
   const start = await page.evaluate(() => performance.now());
   await button('Preview files').click();
@@ -98,19 +112,22 @@ try {
   result.trace = { path: 'evidence/performance-browser-trace.json.gz', events: trace.length };
   await button('Reset').click();
   for (let iteration = 0; iteration < 3; iteration++) {
-    await selectPair(longPair); await button('Preview files').click(); await button('Cancel').click();
+    await selectPair(longPaths); await button('Preview files').click(); await button('Cancel').click();
     await page.waitForFunction(() => typeof globalThis.__rowtraceLab.cancelConfirmedMs === 'number' && globalThis.__rowtraceLab.cancelConfirmedMs >= 0);
-    result.cancellation.push(await page.evaluate(() => ({ clickToTwoAnimationFramesMs: globalThis.__rowtraceLab.cancelConfirmedMs, workersCreated: globalThis.__rowtraceLab.workersCreated, workersTerminated: globalThis.__rowtraceLab.workersTerminated })));
+    result.cancellation.push(await page.evaluate(() => ({ clickHandlerAt: globalThis.__rowtraceLab.cancelClick, clickHandlerToTwoAnimationFramesMs: globalThis.__rowtraceLab.cancelConfirmedMs, workersCreated: globalThis.__rowtraceLab.workersCreated, workersTerminated: globalThis.__rowtraceLab.workersTerminated })));
     await button('Reset').click();
   }
   const sparsePair = largePair(20000, 'sparse');
+  const sparsePaths = await writePair(sparsePair, 'sparse');
   for (let iteration = 0; iteration < 5; iteration++) {
-    await selectPair(sparsePair); await previewAndCompare();
+    await selectPair(sparsePaths); await previewAndCompare();
     const complete = await memorySnapshot(); await button('Reset').click();
     result.memoryCycles.push({ iteration, complete, afterReset: await memorySnapshot() });
   }
   result.observations = await page.evaluate(() => globalThis.__rowtraceLab);
   result.requests = requests;
+  result.productionAssetSha256After = await buildFingerprint();
+  result.buildStableDuringRun = JSON.stringify(result.productionAssetSha256) === JSON.stringify(result.productionAssetSha256After);
   await writeFile(join(root, 'evidence/performance-browser.json'), JSON.stringify(result, null, 2) + '\n');
   process.stdout.write(JSON.stringify({ browser: result.browser, processing: result.processing, cancellation: result.cancellation, memoryCycles: result.memoryCycles, longTasks: result.observations.longTasks }, null, 2) + '\n');
-} finally { await browser.close(); }
+} finally { await browser.close(); for (const path of fixturePaths) await unlink(path); await rmdir(fixtureDirectory); }

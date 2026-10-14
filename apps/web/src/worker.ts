@@ -1,5 +1,6 @@
 /// <reference lib="webworker" />
 import { parseDataset, compareDatasets, serializeReport, RowtraceError } from '@seoshiro/rowtrace-core';
+import { renderHtmlReport } from '@seoshiro/rowtrace-core/html';
 import type { Dataset, DiffReport, DataRow } from '@seoshiro/rowtrace-core';
 import { isRequest, type Request, type Response, type Page, type Preview } from './protocol';
 const ctx = self as unknown as DedicatedWorkerGlobalScope;
@@ -39,7 +40,13 @@ type ResponseBody = Response extends infer R ? R extends Response ? Omit<R,'job'
 function send(request: Request, payload: ResponseBody) { ctx.postMessage({...payload,job:request.job,request:request.request}); }
 // The worker owns datasets and the complete report. Only bounded projections cross to React.
 ctx.onmessage = async (event: MessageEvent<unknown>) => {
-  if (!isRequest(event.data)) return;
+  if (!isRequest(event.data)) {
+    const value: unknown = event.data;
+    if (typeof value === 'object' && value !== null && 'job' in value && 'request' in value && Number.isSafeInteger(value.job) && Number(value.job) >= 0 && Number.isSafeInteger(value.request) && Number(value.request) >= 0) {
+      ctx.postMessage({job:value.job,request:value.request,type:'error',code:'INVALID_CONFIG',message:'Invalid worker request.',details:''});
+    }
+    return;
+  }
   const request = event.data;
   try {
     if (request.type === 'load' || request.type === 'demo') {
@@ -69,7 +76,8 @@ ctx.onmessage = async (event: MessageEvent<unknown>) => {
       if (row) send(request,{type:'detail',row});
     } else if (request.type === 'export') {
       if (!report) throw new RowtraceError('INVALID_CONFIG','No complete report to export.');
-      const text = request.format === 'json' ? serializeReport(report) : (await import('@seoshiro/rowtrace-core/html')).renderHtmlReport(report);
+      // Static worker import supports WebKit's module-worker implementation and avoids copying the report to the UI.
+      const text = request.format === 'json' ? serializeReport(report) : renderHtmlReport(report);
       send(request,{type:'export',format:request.format,blob:new Blob([text],{type:request.format === 'json' ? 'application/json' : 'text/html'})});
     }
   } catch(error) {

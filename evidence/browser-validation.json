@@ -1,0 +1,590 @@
+{
+  "kind": "automated-production-browser-validation",
+  "platform": "win32",
+  "node": "v24.18.0",
+  "playwright": "1.64.0",
+  "sourceState": "Frozen pre-release worktree; exact source and built artifact SHA-256 below. Integration commit recorded in RELEASE.md.",
+  "command": "npx playwright test",
+  "stats": {
+    "startTime": "2026-10-14T14:56:14.944Z",
+    "duration": 43869.234000000004,
+    "expected": 40,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "browsers": [
+    "chromium: 156.0.8078.4 on win32",
+    "firefox: 157.0 on win32",
+    "webkit: 27.2 on win32"
+  ],
+  "axe": [
+    {
+      "state": "axe-initial.json",
+      "violations": 0,
+      "incomplete": 1,
+      "passes": 21
+    },
+    {
+      "state": "axe-result.json",
+      "violations": 0,
+      "incomplete": 2,
+      "passes": 27
+    },
+    {
+      "state": "axe-diagnostics.json",
+      "violations": 0,
+      "incomplete": 1,
+      "passes": 25
+    }
+  ],
+  "cases": [
+    {
+      "file": "contract.spec.ts",
+      "title": "demo golden, details, filters, empty state and deterministic export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2123,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "CSV import, explicit key, duplicate blocks, malformed input recovers",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1778,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "flat JSON preserves missing null empty and scalar types",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 965,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "BOM multiline Unicode and composite collision remain correct",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2290,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "empty datasets, schema changes, ignored columns and explicit delimiter",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2413,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "demo golden, details, filters, empty state and deterministic export",
+      "browser": "firefox",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 4909,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "CSV import, explicit key, duplicate blocks, malformed input recovers",
+      "browser": "firefox",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2479,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "flat JSON preserves missing null empty and scalar types",
+      "browser": "firefox",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1287,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "BOM multiline Unicode and composite collision remain correct",
+      "browser": "firefox",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 4820,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "empty datasets, schema changes, ignored columns and explicit delimiter",
+      "browser": "firefox",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 3158,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "demo golden, details, filters, empty state and deterministic export",
+      "browser": "webkit",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2999,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "CSV import, explicit key, duplicate blocks, malformed input recovers",
+      "browser": "webkit",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 3069,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "flat JSON preserves missing null empty and scalar types",
+      "browser": "webkit",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1518,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "BOM multiline Unicode and composite collision remain correct",
+      "browser": "webkit",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 3583,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "contract.spec.ts",
+      "title": "empty datasets, schema changes, ignored columns and explicit delimiter",
+      "browser": "webkit",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 4569,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 320x740: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1054,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 360x800: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1015,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 390x844: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1106,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 430x932: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1065,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 768x1024: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1198,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 1280x720: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1283,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 1440x900: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1537,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 1920x1080: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1493,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "viewport 844x390: controls, detail, diagnostic and export",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1168,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "language changes preserve report, selected row and search",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1378,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "keyboard activation, focus styles and reduced-motion remain usable",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 784,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "layout.spec.ts",
+      "title": "long values readable at 320 CSS px without page overflow",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1032,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "malformed and oversized inputs report explicit errors, then recover",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 3818,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "64 KiB value boundary succeeds and one byte above blocks",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1130,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "two supported 100-column inputs allow a 199-column union",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1117,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "new input invalidates report, pagination and sort have no stale rows",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1507,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "worker terminate cancels work and old completion cannot replace a new job",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1412,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "worker asset failure is visible and can recover",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 782,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "fatal malformed worker reply clears unusable preview and supports reload",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1222,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "invalid worker request with valid envelope returns diagnostic instead of hanging",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1176,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "lifecycle.spec.ts",
+      "title": "two contexts and repeated reset retain no files or object URLs",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 3043,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "security.spec.ts",
+      "title": "hostile text stays inert, files remain RAM-only and no canary leaves browser",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1799,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "security.spec.ts",
+      "title": "axe checks initial, result and blocking diagnostics without exclusions",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 2648,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "security.spec.ts",
+      "title": "blocked storage and failed export recover without recomputing",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 893,
+          "retry": 0
+        }
+      ]
+    },
+    {
+      "file": "security.spec.ts",
+      "title": "loaded report exports offline; new worker failure is visible and recovers online",
+      "browser": "chromium",
+      "status": "expected",
+      "runs": [
+        {
+          "status": "passed",
+          "durationMs": 1574,
+          "retry": 0
+        }
+      ]
+    }
+  ],
+  "sha256": {
+    "apps/web/src/App.tsx": "6e6976284e8e5ffb520a7acd6c4b02e3c09e56e09fc25256f002d63620666ef1",
+    "apps/web/src/env.d.ts": "c281914bbb1c70b5acdaade91e005269159a2b0955fdea2f7f3c1024f4183289",
+    "apps/web/src/i18n.ts": "9e0b265e30b3457ec36fd71e6720d74d47212dd2d2828ef3156931053e06e86e",
+    "apps/web/src/main.tsx": "0e2c664ad42103439006940fff2ebab5c3db4a7cef45bdd6cb3a27b2f95011ff",
+    "apps/web/src/protocol.ts": "3df51b18f488ee0b0daa88fc585dbc26c56ceeb51ea0df8de2f522c50c87dc92",
+    "apps/web/src/style.css": "5bb9cb242361de620210f13a66877f7490c155ca8fee2ee6535943f8a84e29b9",
+    "apps/web/src/worker.ts": "01291c7bc6a86719ebde392868c5f12616d07b46b989c1383c81bfdea74378d2",
+    "apps/web/public/demo/after.csv": "5d9104973e420973ccd443baf3e2f0e5638809607d50661ac8f057ec06fb98e2",
+    "apps/web/public/demo/before.csv": "a74b428c678a7b87fac5903ffd6483104c3ab8adacdecdbb0d160eeef7a108c0",
+    "apps/web/public/demo/duplicate-before.csv": "907dbafc6fc363e127b9fb97a09cdd19fd09b50181d30404ff19281e8213ef14",
+    "apps/web/dist/assets/index-Cw4W7sxe.css": "82ef3aaa3b93f9b641639432a4658b6a66b129429ddffe8cea0716666083b32c",
+    "apps/web/dist/assets/index-CZItvzwB.js": "abec3667f34ac87bf0a431c0b8d2a8b7ae0aa83b81d087455e046b555e2535a6",
+    "apps/web/dist/assets/worker-CLEdIp-8.js": "407b1d86a7a707a3e1f15b0cea0c08ba9246b4cb20ef461d37f4628862c33cb0",
+    "apps/web/dist/demo/after.csv": "5d9104973e420973ccd443baf3e2f0e5638809607d50661ac8f057ec06fb98e2",
+    "apps/web/dist/demo/before.csv": "a74b428c678a7b87fac5903ffd6483104c3ab8adacdecdbb0d160eeef7a108c0",
+    "apps/web/dist/demo/duplicate-before.csv": "907dbafc6fc363e127b9fb97a09cdd19fd09b50181d30404ff19281e8213ef14",
+    "apps/web/dist/index.html": "af0b0694d069fc24169820b57595237361a8f58f2ec61fa9e7894e81cebd602f",
+    "apps/web/dist/version.json": "2ba3750d2ba3b5fda7d7305f4f74288d317afca85627817fd0956df1d88250fb",
+    "packages/core/src/compare.ts": "a6fa508cc6ecdd8e649b033ce066e72ce6caa3389127bbcb8fd78c9055793a09",
+    "packages/core/src/html.ts": "cdc1f0f1c29031e79e9c829a110c55d9da7c079045ad076636b6bdece7aab45a",
+    "packages/core/src/index.ts": "6244e58435577f1ea6eb38a7180a3afcc2a11235f2d563ea36562123ed2a801d",
+    "packages/core/src/parse.ts": "fe551deb9a951fb161daf5dcbe00f8e53c8653f307011b4059b83cf0e454a617",
+    "packages/core/src/serialize.ts": "052f99539c49f3fd7f38c5dd1ee0e3b035058eb1d30402b0721893d3b3e2478c",
+    "packages/core/src/types.ts": "a4841c73b6784672e4e56518df3a67fdf1f6e8230cc16f9969efd752371b65df",
+    "packages/core/src/validation.ts": "c366aad427f174002f1435e5e871b56f4148b8ab0f9cf11b422be2e52e29d5bf"
+  }
+}

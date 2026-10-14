@@ -23,6 +23,8 @@ export async function downloadText(page: Page, format: 'JSON' | 'HTML') {
   await page.getByRole('button', { name: `Export ${format}`, exact: true }).click();
   const download = await downloadPromise;
   expect(await download.failure()).toBeNull();
+  try { await expect(page.getByRole('button', { name: `Export ${format}`, exact: true })).toBeFocused(); }
+  catch { throw new Error(`Export focus was lost to: ${await page.evaluate(() => document.activeElement?.outerHTML.slice(0, 500))}`); }
   const path = await download.path();
   if (!path) throw new Error('Download did not produce a file');
   return readFile(path, 'utf8');

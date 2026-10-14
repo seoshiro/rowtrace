@@ -1,5 +1,7 @@
 # Performance evidence — ROWTRACE 0.1.0
 
+Final accessibility-only `role="group"` adjustment was followed by bundle accounting: main 259,383 bytes / 80,608 bytes gzip (`index-BGjeNMHE.js`), worker unchanged. Browser timings below retain the earlier explicitly fingerprinted 80,604-byte-gzip main build; the four-byte difference is not a new timing measurement.
+
 Measurements are synthetic laboratory results, not a promise for every device or dataset. The supported maximum is a combination of limits, not permission to multiply every maximum together. No field Web Vitals dataset exists; p75 LCP/INP/CLS compliance is **not established**.
 
 ## Reproduction and identity
@@ -49,7 +51,7 @@ The initial JSON serializer retained an array of every tiny punctuation/token fr
 
 The final long-case total was 2.53 s versus 2.39 s initially; the final parser includes an additional CSV correctness guard, and uncontrolled host scheduling/GC also affects timings. We do not claim an overall improvement for every case. `performance-optimization.json` preserves the intermediate export experiment; a correctness build may have overlapped that run, so the final fingerprint-checked run is authoritative.
 
-Memory instruments: `process.memoryUsage()` at stage boundaries (heapUsed, heapTotal, RSS, external, arrayBuffers), plus `process.resourceUsage().maxRSS` high-water KiB. Stage snapshots miss transient peaks, and RSS includes V8/runtime/allocator pages and cannot identify a single object leak. A child process is fresh per scenario; warmup and subsequent iterations deliberately share that process. Explicit GC and a final post-case GC sample are recorded. This is not a browser worker memory measurement.
+Memory instruments: `process.memoryUsage()` at stage boundaries (heapUsed, heapTotal, RSS, external, arrayBuffers), plus `process.resourceUsage().maxRSS` high-water KiB. The final 20k long process reached 535,540 KiB (about 523 MiB) high-water RSS. Stage snapshots miss transient peaks, and RSS includes V8/runtime/allocator pages and cannot identify a single object leak. A child process is fresh per scenario; warmup and subsequent iterations deliberately share that process. Explicit GC and a final post-case GC sample are recorded. This is not a browser worker memory measurement.
 
 ## Limits and practical consequences
 
@@ -57,6 +59,31 @@ Default per-input limits: 16 MiB UTF-8, 20,000 rows, 100 columns, 1,000,000 row�
 
 ## Bundle and browser laboratory
 
-Bundle evidence is generated from production files by `scripts/bundle-sizes.mjs`: each asset has bytes, gzip level-9 estimate and SHA-256; main/worker static import closures, lazy HTML, CSS and fonts are counted separately. Core+runtime dependencies are independently bundled/minified using the installed Rolldown. Gzip estimates are local and are not a claim about hosting response compression. Browser request evidence is required to confirm lazy fetching, separately from artifact inventory.
+Bundle evidence is generated from production files by `scripts/bundle-sizes.mjs`: each asset has bytes, gzip level-9 estimate and SHA-256; main/worker static import closures, any lazy chunks, CSS and fonts are counted separately. Core+runtime dependencies are independently bundled/minified using the installed Rolldown. Gzip estimates are local and are not a claim about hosting response compression. Browser request evidence is required to confirm lazy fetching, separately from artifact inventory.
 
-Browser laboratory results will be appended after the production build passes its first risk-based QA run. Until then, cancellation latency, CPU-throttled responsiveness, memory reset behavior and lab Web Vitals are **not claimed verified**. The initial budgets remain: main ≤200 KiB gzip, core+runtime ≤50 KiB gzip, visible cancellation around 200 ms in the tested scenario. Worker code is counted separately. No physical mobile device or field p75 claim is made.
+The final pre-commit production build was measured after the risk-based browser suite passed. `performance-bundles.json` records these exact sizes:
+
+| Component | Uncompressed bytes | Gzip level-9 bytes |
+|---|---:|---:|
+| Main JavaScript | 259,383 | 80,608 |
+| Worker (loaded on analysis) | 48,124 | 17,515 |
+| Separate lazy JavaScript chunks | 0 | 0 |
+| CSS | 19,829 | 4,708 |
+| Fonts | 0 | 0 |
+| Independent core + runtime dependencies | 41,098 | 14,370 |
+
+Initial-JS target ≤200 KiB gzip and core+runtime target ≤50 KiB gzip pass for this build. No remote font is required. To fix a reproduced WebKit worker dynamic-import failure, the small HTML renderer is now statically included in the worker. This is an explicit tradeoff: HTML code arrives when analysis first creates the worker, rather than only on export. It remains absent from initial page loading. Final initial-request evidence contains only document, main JS and CSS: no fixtures, worker, report chunk or font request.
+
+`performance-browser.json` and `performance-browser-trace.json.gz` record the corrected final run on Windows, headless Playwright Chromium **156.0.8078.4**, viewport **1440×900**, reduced motion, CDP CPU rate **4**, network **20 ms latency / 20 Mib/s download and upload**, local production preview. CPU throttling is a laboratory renderer model; its effect on worker CPU is not independently verified. This is not a physical phone. The page starts in a fresh browser context. Build fingerprints before/after match (`buildStableDuringRun: true`): main `index-CZItvzwB.js`, SHA-256 `abec3667f34ac87bf0a431c0b8d2a8b7ae0aa83b81d087455e046b555e2535a6`; worker `worker-CLEdIp-8.js`, SHA-256 `407b1d86a7a707a3e1f15b0cea0c08ba9246b4cb20ef461d37f4628862c33cb0`.
+
+The 20k long fixture took **1,110.5 ms** from just before Preview to the complete result, including automation/control scheduling, preview and comparison (no export). Language was changed RU→EN and the page scrolled while the worker was pending. Row detail and descending sort then worked; load/compare message count stayed **2→2**, showing those result controls did not request reparsing or recomparison.
+
+Three real cancellations of the long import terminated the active workers and showed the cancelled state after **13.8 / 15.8 / 19.8 ms**, measured from the browser click handler to two subsequent animation frames. These meet the approximate 200 ms target in this scenario. This is not full input delay or INP: time before the click handler runs is excluded. The stale-job/cancellation correctness checks are separately recorded in VALIDATION.md.
+
+The main-thread Long Tasks observer recorded **105 ms** on startup and **72 ms** in the processing window. Trace attribution places the large file operation in `worker-CLEdIp-8.js`; the 72 ms function is the main React scheduling/render path. Rendering/layout still has costs: the trace includes a result-layout event of about **180 ms** under CPU4x. Therefore this is evidence of worker isolation, not a claim of zero long tasks, uniformly smooth frames, or every interaction below 200 ms. No unnecessary worker pool or virtualization was added to hide that distinction.
+
+After five sequential 20k sparse imports/comparisons and resets, all **9 created workers had been terminated**, including the earlier long case and cancellations. Post-reset DOM nodes stayed **242** and listener count **181** in each of the five cycles. Main-renderer `JSHeapUsedSize` after forced GC increased from **3,828,464** to **3,922,684** bytes (about 94 KB), while completed reports used roughly 3.96–4.06 MB. The first page's lower heap (1.28 MB) precedes loaded/interacted UI paths. CDP heap counters **exclude worker heap and OS RSS**; five cycles plus instrumentation/engine caches cannot prove the absence of every leak, but do not show retained whole datasets on the main thread. Object URL lifecycle is tested separately by QA.
+
+Single-run laboratory LCP was **860 ms**. Every recorded layout shift had `hadRecentInput: true`, so the eligible unexpected-shift sum in this run was **0**. No field data, field p75, INP measurement, Lighthouse score or TBT-to-INP equivalence is claimed. Manual exploratory/live browser checks are separate from this automated lab.
+
+An initial laboratory harness passed multi-megabyte `Buffer` payloads to Playwright `setInputFiles`. This injects a base64 representation through automation and produced 3.5–3.8-second main-thread tasks before Preview. Those are not a trustworthy measurement of native file selection. `performance-browser-buffer-artifact.json` and its trace preserve this failed measurement design. The corrected harness writes the same synthetic fixtures into temporary files and supplies their native paths; it does not change product code to hide the artifact. Measurements use actual file read/parse after selection. The initial harness run also preceded the WebKit HTML-export fix, so its latency values are not presented as final-release evidence.

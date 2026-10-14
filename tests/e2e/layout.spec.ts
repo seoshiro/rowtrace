@@ -14,6 +14,9 @@ for (const [width, height] of [[320, 740], [360, 800], [390, 844], [430, 932], [
     await noPageOverflow(page);
     await expect(page.getByRole('complementary').getByText('16900', { exact: true })).toBeVisible();
     await downloadText(page, 'JSON');
+    // Capture at the document origin: Chromium full-page capture otherwise includes
+    // a deliberately offscreen fixed skip-link at scrollY - 60 in the stitched image.
+    await page.evaluate(() => window.scrollTo(0, 0));
     await testInfo.attach('result.png', { body: await page.screenshot({ path: testInfo.outputPath(`result-${width}.png`), fullPage: true }), contentType: 'image/png' });
     await page.getByRole('button', { name: 'Duplicate-key demo', exact: true }).click();
     await expect(page.getByRole('alert')).toContainText('DUPLICATE_KEY');
@@ -24,8 +27,8 @@ for (const [width, height] of [[320, 740], [360, 800], [390, 844], [430, 932], [
 test('language changes preserve report, selected row and search', async ({ page }) => {
   await open(page); await demo(page);
   const report = await downloadText(page, 'JSON');
-  await page.getByRole('button', { name: 'A17', exact: true }).click();
   await page.getByLabel('Search records', { exact: true }).fill('A17');
+  await page.getByRole('button', { name: 'A17', exact: true }).click();
   await page.getByLabel('Language', { exact: true }).selectOption('ru');
   await expect(page.getByRole('button', { name: 'Скачать JSON', exact: true })).toBeVisible();
   await expect(page.getByRole('complementary').getByText('16900', { exact: true })).toBeVisible();

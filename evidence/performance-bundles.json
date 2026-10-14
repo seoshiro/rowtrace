@@ -1,23 +1,15 @@
 {
-  "generatedAt": "2026-10-14T14:44:02.512Z",
+  "generatedAt": "2026-10-14T15:03:34.636Z",
   "gzip": "Node zlib level 9, local estimate; actual HTTP compression depends on host",
   "classification": "Main = scripts/preloads referenced by generated index.html plus static-import closure; worker = named worker entry plus static-import closure; other JS = lazy chunks. Shared chunks appear in both main and worker totals, so categories are not additive. Static import extraction uses built-output syntax; runtime request audit separately confirms lazy behavior.",
   "files": [
     {
-      "path": "assets/html-CU8wt7zW.js",
-      "category": "lazy",
-      "staticImports": [],
-      "bytes": 3991,
-      "gzipBytes": 2091,
-      "sha256": "71c38587e19eb5d7b7a4d248287d2896775c4c910eae4ae50d674a6f07bd89bd"
-    },
-    {
-      "path": "assets/index-BNf0qLhm.js",
+      "path": "assets/index-BGjeNMHE.js",
       "category": "main",
       "staticImports": [],
-      "bytes": 258556,
-      "gzipBytes": 80260,
-      "sha256": "5d9b92f36d3aea74d0c31d754af1a4f477fd4a4e912932442ffb976a37529fea"
+      "bytes": 259383,
+      "gzipBytes": 80608,
+      "sha256": "71c3e38ec8871283d8d2ab8397b493b82bcc6f3ae53576fc6b73cbbc0bea7b33"
     },
     {
       "path": "assets/index-Cw4W7sxe.css",
@@ -28,36 +20,36 @@
       "sha256": "82ef3aaa3b93f9b641639432a4658b6a66b129429ddffe8cea0716666083b32c"
     },
     {
-      "path": "assets/worker-BlU7nrdu.js",
+      "path": "assets/worker-CLEdIp-8.js",
       "category": "worker",
       "staticImports": [],
-      "bytes": 43987,
-      "gzipBytes": 15576,
-      "sha256": "5ec7d2c3cb06071dcd848307ec4bce181eeb4dc6b4e6a6c78eb6f03a1fdd6a92"
+      "bytes": 48124,
+      "gzipBytes": 17515,
+      "sha256": "407b1d86a7a707a3e1f15b0cea0c08ba9246b4cb20ef461d37f4628862c33cb0"
     },
     {
       "path": "demo/after.csv",
       "category": "fixtures",
       "staticImports": [],
-      "bytes": 92,
-      "gzipBytes": 104,
-      "sha256": "2d2e564517db535418493a7772500f73be84aeb43bae94f29759bef54dc539aa"
+      "bytes": 68,
+      "gzipBytes": 86,
+      "sha256": "5d9104973e420973ccd443baf3e2f0e5638809607d50661ac8f057ec06fb98e2"
     },
     {
       "path": "demo/before.csv",
       "category": "fixtures",
       "staticImports": [],
-      "bytes": 90,
-      "gzipBytes": 104,
-      "sha256": "69aa75a90a7da77da94942c2a08acc6e44dbbe59da1113ba0b5d6cd86d362c5b"
+      "bytes": 65,
+      "gzipBytes": 83,
+      "sha256": "a74b428c678a7b87fac5903ffd6483104c3ab8adacdecdbb0d160eeef7a108c0"
     },
     {
       "path": "demo/duplicate-before.csv",
       "category": "fixtures",
       "staticImports": [],
-      "bytes": 94,
-      "gzipBytes": 97,
-      "sha256": "2189ab0ed8e380aa847b4c5df24e2fc9118f169e016d09b470851f53f615734c"
+      "bytes": 69,
+      "gzipBytes": 73,
+      "sha256": "907dbafc6fc363e127b9fb97a09cdd19fd09b50181d30404ff19281e8213ef14"
     },
     {
       "path": "index.html",
@@ -65,7 +57,7 @@
       "staticImports": [],
       "bytes": 811,
       "gzipBytes": 482,
-      "sha256": "affc2031e68442db729e9463cb61675e08197dc05912a2a71dd17f2598e7b431"
+      "sha256": "e459f9271e351cd593f551d0b136dee9e0c540466e3ff6597c1908cb086ac4ec"
     },
     {
       "path": "version.json",
@@ -78,16 +70,16 @@
   ],
   "totals": {
     "main": {
-      "bytes": 258556,
-      "gzipBytes": 80260
+      "bytes": 259383,
+      "gzipBytes": 80608
     },
     "worker": {
-      "bytes": 43987,
-      "gzipBytes": 15576
+      "bytes": 48124,
+      "gzipBytes": 17515
     },
     "lazy": {
-      "bytes": 3991,
-      "gzipBytes": 2091
+      "bytes": 0,
+      "gzipBytes": 0
     },
     "css": {
       "bytes": 19829,
@@ -98,8 +90,8 @@
       "gzipBytes": 0
     },
     "fixtures": {
-      "bytes": 276,
-      "gzipBytes": 305
+      "bytes": 202,
+      "gzipBytes": 242
     },
     "other": {
       "bytes": 847,

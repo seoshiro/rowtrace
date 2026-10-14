@@ -6,6 +6,8 @@ ROWTRACE is a local data review tool with a shared TypeScript engine, browser wo
 
 **Release preparation in progress.** The [public repository](https://github.com/seoshiro/rowtrace) exists. A live demo and verified release artifacts will be linked after publication and checks; the npm packages are not published.
 
+![ROWTRACE workbench with two file inputs and synthetic demo](evidence/ui/initial-1440.png)
+
 ## Run locally
 
 Use Node 24 and npm. From a clean checkout:
@@ -51,12 +53,14 @@ Exit codes: `0` completed, `1` changes under `--fail-on-change`, `2` invalid inp
 - UTF-8 CSV with a header, optional BOM, comma or explicitly selected semicolon; quoted commas, quotes and multiline fields are supported. CSV values remain strings.
 - JSON array of flat objects containing strings, numbers, booleans or null. Missing, null and empty string differ. Duplicate property names, nested values and unsafe integers are rejected. Use strings for exact decimal values and large identifiers.
 - Explicit unique or composite keys. No fuzzy matching. Exact comparison is default; explicit normalization/ignored columns are recorded in reports.
-- Supported hard ceilings: 16 MiB per input, 20,000 records, 100 columns, 1,000,000 logical cells, 64 KiB UTF-8 per string, 1 KiB per header, 4 KiB encoded key, 16 KiB config and 32 MiB report. Performance validation is still in progress; see [measurements](docs/PERFORMANCE.md) for final supported conditions.
+- Supported hard ceilings: 16 MiB per input, 20,000 records, 100 columns, 1,000,000 logical cells, 64 KiB UTF-8 per string, 1 KiB per header, 4 KiB encoded key, 16 KiB config and 32 MiB report. These limits combine; they are not a memory guarantee. See [measured conditions and memory use](docs/PERFORMANCE.md).
 - XLSX, archives, SQL, PDF, URL inputs and CSV report export are outside this release.
 
 ## Privacy and security
 
 Selected browser files stay in memory and are processed in a worker. They are not uploaded, stored in the URL or persisted in browser storage. Exported reports can contain all input values: share them deliberately. The hosting provider still sees normal requests for public app assets and the visitor's IP.
+
+Downloaded HTML reports work offline. The app has no offline shell: starting or restarting a worker may need its static assets, so a fresh analysis after losing connectivity is not guaranteed.
 
 Reports are canonical JSON or self-contained inert HTML. No accounts, backend, database, paid API, billing integration or analytics are part of the product. These choices reduce exposure; they do not guarantee that every possible vulnerability or account risk is eliminated.
 
@@ -80,6 +84,7 @@ npm run scan:secrets
 - [Semantics](docs/SEMANTICS.md): types, identity, errors and deterministic ordering.
 - [Architecture](docs/ARCHITECTURE.md): package boundaries, worker ownership and tradeoffs.
 - [Security](docs/SECURITY.md): threats, mitigations and limitations.
+- [Hosting costs](docs/COSTS.md): public free hosting configuration and service limits.
 - [Performance](docs/PERFORMANCE.md): measured timing, memory and bundle sizes.
 - [Research](docs/RESEARCH.md): existing tools, references and original scope.
 - [Release](docs/RELEASE.md): exact artifacts, deployment and rollback.
