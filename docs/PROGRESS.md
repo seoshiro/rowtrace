@@ -17,8 +17,8 @@
 | B - implementation and automatic checks | COMPLETE | Core20 and CLI10 tests pass; production browser suite40/40 passes without retries/skips |
 | C - exploratory browser pass | BLOCKED | Browser-control runtime fails before startup; automated browser checks and pixel review are separate evidence |
 | D - fixes/security/performance | COMPLETE | Scoped security audit, stable core benchmark and fingerprint-checked browser lab complete; limitations documented |
-| E - packaging/release validation | IN PROGRESS | Independent tarball consumer passed; final clean checkout and exact commit validation pending |
-| F - free deployment/live checks | PENDING | Public repository created; exact SHA CI, Pages and two fresh live automation passes pending |
+| E - packaging/release validation | COMPLETE | Independent tarball consumer passed; clean checkout9543ba5 passed npm ci/lint/build/types/core+CLI/packed/secret scan |
+| F - free deployment/live checks | COMPLETE WITH BOUNDARY | Integration SHA CI/Pages and two independent fresh live automation passes succeeded; manual exploratory blocked; final tag identity attached to release |
 
 ## Resume and current evidence
 
@@ -38,4 +38,4 @@ Initial implementation commit: `f32a6b734fc3c066bed85a64798906601d9a842c`. Final
 
 Final browser regressions passed40/40:30 Chromium,5 Firefox,5 WebKit. Stable browser lab measured three cancellation samples13.8/15.8/19.8ms from click handler to two animation frames; this is a laboratory measurement, not a physical-device/field guarantee. Nine created workers were terminated; reset checks cover main-renderer memory, not worker peak heap.
 
-Next: inspect release contents, then execute clean-checkout and exact-SHA CI/deploy/live tests.
+Integration commit `9543ba55d2a4ecc22d4de75e388e53dda83c4a73` passed the independent clean checkout and https://github.com/seoshiro/rowtrace/actions/runs/38586401958 on Windows/Ubuntu. Pages https://seoshiro.github.io/rowtrace/ returned the same SHA. Both independent live automation passes succeeded, with no observed console/page/HTTP errors. Final release identity, repeated exact-SHA CI/live checks and archive hashes are attached to v0.1.0 as described in RELEASE.md. Portfolio card prepared only; existing projects and portfolio remain unchanged.

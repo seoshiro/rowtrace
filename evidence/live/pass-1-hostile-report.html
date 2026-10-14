@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; base-uri 'none'; form-action 'none'"><title>ROWTRACE — Snapshot comparison</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#11151b;color:#eef1f5;max-width:1100px;margin:0 auto;padding:24px}h1,h2{line-height:1.2}h1{font-size:2rem}h2{font-size:1.2rem}table{border-collapse:collapse;width:100%;margin:16px 0}th,td{text-align:left;vertical-align:top;padding:10px;border:1px solid #566170;overflow-wrap:anywhere}th{background:#242c38}code,pre{font-family:ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}section{margin:32px 0;border-top:2px solid #7dd3ac;padding-top:12px}em{color:#b8c1cf}summary{cursor:pointer}a{color:inherit}</style></head><body><h1>ROWTRACE</h1><p>Snapshot comparison · schemaVersion 1</p><p>This report contains the compared data. Share it carefully.</p><table><thead><tr><th>Before</th><th>After</th><th>Added</th><th>Removed</th><th>Changed</th><th>Unchanged</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>0</td><td>0</td><td>1</td><td>0</td></tr></tbody></table><details><summary>Comparison settings</summary><pre>{
+  &quot;keyColumns&quot;: [
+    &quot;sku&quot;
+  ],
+  &quot;ignoreColumns&quot;: [],
+  &quot;trimStrings&quot;: false,
+  &quot;ignoreCase&quot;: false
+}</pre></details><details><summary>Column changes</summary><pre>{
+  &quot;before&quot;: [
+    &quot;&lt;img src=\&quot;https://example.invalid/ROWTRACE-XSS\&quot; onerror=\&quot;globalThis.__rowtraceXss=1\&quot;&gt;&quot;,
+    &quot;__proto__&quot;,
+    &quot;constructor&quot;,
+    &quot;formula&quot;,
+    &quot;prototype&quot;,
+    &quot;sku&quot;,
+    &quot;terminal&quot;
+  ],
+  &quot;after&quot;: [
+    &quot;&lt;img src=\&quot;https://example.invalid/ROWTRACE-XSS\&quot; onerror=\&quot;globalThis.__rowtraceXss=1\&quot;&gt;&quot;,
+    &quot;__proto__&quot;,
+    &quot;constructor&quot;,
+    &quot;formula&quot;,
+    &quot;prototype&quot;,
+    &quot;sku&quot;,
+    &quot;terminal&quot;
+  ],
+  &quot;added&quot;: [],
+  &quot;removed&quot;: [],
+  &quot;compared&quot;: [
+    &quot;&lt;img src=\&quot;https://example.invalid/ROWTRACE-XSS\&quot; onerror=\&quot;globalThis.__rowtraceXss=1\&quot;&gt;&quot;,
+    &quot;__proto__&quot;,
+    &quot;constructor&quot;,
+    &quot;formula&quot;,
+    &quot;prototype&quot;,
+    &quot;sku&quot;,
+    &quot;terminal&quot;
+  ]
+}</pre></details><section><h2>Key: <code>[&quot;ROWTRACE-CANARY-82741&quot;]</code> · Changed</h2><table><thead><tr><th scope="col">Field</th><th scope="col">Before</th><th scope="col">After</th></tr></thead><tbody><tr><th scope="row">&lt;img src=&quot;https://example.invalid/ROWTRACE-XSS&quot; onerror=&quot;globalThis.__rowtraceXss=1&quot;&gt;</th><td><code>&quot;&lt;img src=\&quot;https://example.invalid/ROWTRACE-XSS\&quot; onerror=\&quot;globalThis.__rowtraceXss=1\&quot;&gt;&quot;</code></td><td><code>&quot;&lt;img src=\&quot;https://example.invalid/ROWTRACE-XSS\&quot; onerror=\&quot;globalThis.__rowtraceXss=1\&quot;&gt;&quot;</code></td></tr><tr><th scope="row">__proto__</th><td><code>&quot;prototype is data&quot;</code></td><td><code>&quot;prototype is data&quot;</code></td></tr><tr><th scope="row">constructor</th><td><code>&quot;constructor is data&quot;</code></td><td><code>&quot;constructor is data&quot;</code></td></tr><tr><th scope="row">formula</th><td><code>&quot;=HYPERLINK(\&quot;https://example.invalid\&quot;)&quot;</code></td><td><code>&quot;+SUM(1,2)&quot;</code></td></tr><tr><th scope="row">prototype</th><td><code>&quot;prototype is data&quot;</code></td><td><code>&quot;prototype is data&quot;</code></td></tr><tr><th scope="row">sku</th><td><code>&quot;ROWTRACE-CANARY-82741&quot;</code></td><td><code>&quot;ROWTRACE-CANARY-82741&quot;</code></td></tr><tr><th scope="row">terminal</th><td><code>&quot;\u001b]0;not-a-title\u0007\u001b[31mred\nnew line&quot;</code></td><td><code>&quot;\u001b]0;not-a-title\u0007\u001b[31mred\nnew line&quot;</code></td></tr></tbody></table></section></body></html>

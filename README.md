@@ -4,7 +4,9 @@ Compare two CSV or flat JSON snapshots by an explicit key, then inspect what cha
 
 ROWTRACE is a local data review tool with a shared TypeScript engine, browser workbench and command-line interface. Reordering records does not create changes. Duplicate or missing keys block comparison instead of choosing an arbitrary match.
 
-**Release preparation in progress.** The [public repository](https://github.com/seoshiro/rowtrace) exists. A live demo and verified release artifacts will be linked after publication and checks; the npm packages are not published.
+[Live demo](https://seoshiro.github.io/rowtrace/) · [Download packages](https://github.com/seoshiro/rowtrace/releases/tag/v0.1.0) · [CI](https://github.com/seoshiro/rowtrace/actions/workflows/ci.yml)
+
+Version **0.1.0** provides independently installable core and CLI tarballs. The npm packages are **not published**. See the [release record](docs/RELEASE.md) for exact source/CI identity, live checks and remaining validation boundaries.
 
 ![ROWTRACE workbench with two file inputs and synthetic demo](evidence/ui/initial-1440.png)
 
@@ -90,4 +92,4 @@ npm run scan:secrets
 - [Release](docs/RELEASE.md): exact artifacts, deployment and rollback.
 - [Progress](docs/PROGRESS.md): current factual state.
 
-Built with Codex assistance and open-source dependencies. MIT licensed. No adoption, certification or field-performance claim is made.
+Built with Codex assistance and open-source dependencies. MIT licensed; [upstream notices](apps/web/public/THIRD_PARTY_LICENSES.txt) are also included in the static distribution. No adoption, certification or field-performance claim is made.

@@ -43,6 +43,8 @@ These are interpretive design lessons from the linked material. No code, assets,
 
 Public npm registry metadata was read on 2026-10-14 using `https://registry.npmjs.org/<encoded-package>/latest`. Pin actual chosen versions and integrity in the lockfile; this table is the research snapshot, not a claim every candidate is installed.
 
+The browser distribution carries [THIRD_PARTY_LICENSES.txt](../apps/web/public/THIRD_PARTY_LICENSES.txt), copied from installed React, React DOM, scheduler, Papa Parse and jsonc-parser licenses, plus Vite's complete core license and Rolldown notices for generated browser helpers. Package versions are recorded with each notice. This static file is included by Vite's public-directory copy; update it when those dependencies change.
+
 | Candidate | Latest observed | License | Role / recommendation |
 | --- | --- | --- | --- |
 | [react](https://registry.npmjs.org/react/latest), react-dom | 19.3.0 | MIT | UI only, never core runtime. |

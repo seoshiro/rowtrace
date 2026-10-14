@@ -61,6 +61,17 @@ Review of axe's **incomplete** results found one semantic issue even with zero v
 
 No axe result constitutes WCAG certification, no laboratory timing proves field p75 Web Vitals, and zero observed canary requests does not prove absence of every possible leak.
 
+## Public deployment verification
+
+Two independent fresh Chromium browser processes/contexts passed against [the canonical demo](https://seoshiro.github.io/rowtrace/) at integration SHA `9543ba55d2a4ecc22d4de75e388e53dda83c4a73`. Both read the actual `version.json` and asserted the exact SHA. Evidence: [live audit JSON](../evidence/live/audit.json), [desktop](../evidence/live/pass-1-demo.png), [390px touch-emulated viewport](../evidence/live/pass-2-demo.png). These are automated browser passes, not manual exploratory or physical-device tests.
+
+| ID | Environment / actions | Actual result | Status | Commit / evidence |
+|---|---|---|---|---|
+| L01–L12 | Fresh Chromium / Windows, 1440×900 with targeted 320px reflow; canonical entry, main/worker/demo assets, golden result, A17 details, filters/search, CSV+typed JSON input, duplicate block, downloaded JSON+HTML, inert HTML rendered offline, canary requests/storage/URL, RU/KK/EN, keyboard activation, reset/refresh, genuine 20,000-row import cancel at CPU4x | All assertions passed; native Worker.terminate observed and immediate demo recovery; no HTTP4xx/5xx, console errors or uncaught page errors | PASS | `9543ba55…`; `evidence/live/audit.json` pass1 |
+| L-second | Separate fresh Chromium process/context, 390×844 touch emulation; cold entry, demo/details, CSV+JSON import, real JSON+HTML downloads, long header/value, reflow | All assertions passed; no document overflow or console/network errors | PASS | `9543ba55…`; `evidence/live/audit.json` pass2 |
+
+The tracked evidence above intentionally describes the integration deployment. A final release SHA can be rechecked with the same script and `ROWTRACE_AUDIT_OUT=artifacts/live-final`; that ignored JSON is attached to the GitHub release to avoid a self-referential evidence commit. RELEASE.md records the final immutable SHA, workflow and release-artifact links.
+
 New imports after going offline may need to fetch a newly created worker module and are not guaranteed. The checked Chromium context showed a clear WORKER_ERROR and recovered after reconnecting. Already loaded report export and the downloaded self-contained HTML were checked offline. This is a declared boundary, not a promise of an offline application shell.
 
 ## Reproduction

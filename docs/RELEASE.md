@@ -1,11 +1,12 @@
 # ROWTRACE 0.1.0 release record
 
-Status: integration and release validation in progress. No npm publication is claimed.
+Version0.1.0: implementation, automated integration CI, Pages deployment and two independent live automation passes completed. Manual exploratory remains blocked as recorded below. No npm publication is claimed.
 
 ## Distribution
 
 - Repository: https://github.com/seoshiro/rowtrace
-- Intended Pages URL: https://seoshiro.github.io/rowtrace/ — verify live before treating as released.
+- Verified Pages URL: https://seoshiro.github.io/rowtrace/
+- Release and installable archives: https://github.com/seoshiro/rowtrace/releases/tag/v0.1.0
 - Core: `@seoshiro/rowtrace-core@0.1.0`, ESM + declarations.
 - CLI: `@seoshiro/rowtrace-cli@0.1.0`, executable `rowtrace`, matching core dependency.
 - Canonical report schema: string `"1"`, independent of package version.
@@ -18,7 +19,15 @@ The configured machine has no npm login (`npm whoami` returned ENEEDAUTH). Names
 
 ## Release procedure
 
-Pre-publication evidence: Windows Node24.18.0, core20 tests, CLI10 tests, independent packed consumer and production browser40/40 (30 Chromium156.0.8078.4,5 Firefox157.0,5 WebKit27.2), with no browser retries/skips. `evidence/browser-validation.json` fingerprints the frozen source/build; measured core/browser evidence is in PERFORMANCE.md. Final clean-checkout, CI SHA, deployment and live results will be recorded below when executed.
+Pre-publication evidence: Windows Node24.18.0, core20 tests, CLI10 tests, independent packed consumer and production browser40/40 (30 Chromium156.0.8078.4,5 Firefox157.0,5 WebKit27.2), with no browser retries/skips. `evidence/browser-validation.json` fingerprints the frozen source/build; measured core/browser evidence is in PERFORMANCE.md. Clean-checkout, CI SHA, deployment and live results follow below.
+
+Integration commit `9543ba55d2a4ecc22d4de75e388e53dda83c4a73` passed `npm run verify:clean` in an independent temporary Git clone: npm ci, lint, build, typecheck, core/CLI tests, external packed consumer and scoped secret scan. The source checkout was not used as the consumer dependency. See `evidence/clean-check.json`.
+
+That exact SHA passed [GitHub CI run38586401958](https://github.com/seoshiro/rowtrace/actions/runs/38586401958): Windows verification5m40s, Ubuntu verification2m8s, deployment1m20s. Both platforms ran the full40-case browser suite after the final accessibility markup fix. `evidence/ci-integration.json` retains the API result. Live `version.json` returned HTTP200 with that SHA; `evidence/live/audit.json` records two fresh browser processes/contexts with successful actual imports, exports, privacy/error/cancellation checks and responsive layout. These are automation, not the blocked manual pass.
+
+The final release commit additionally records these results and includes upstream static-bundle license notices. Its immutable identity is the `v0.1.0` tag. **`release-validation.json` attached to the release is the authoritative final full SHA, exact CI run, matching live version and clean packed-consumer result.** It is generated only after that commit's CI and live checks succeed. The final live audit is attached separately as `live-audit-final.json`; `SHA256SUMS.txt` covers the downloadable files. This avoids putting a commit's own hash inside its content or mislabeling earlier evidence as a later run.
+
+Provider annotations on the integration run: Ubuntu's latest-runner label has an announced future image migration; pinned Pages actions declaring Node20 ran successfully under the provider's enforced Node24 compatibility. These are retained CI warnings, not hidden failures. Final CI remains the release gate.
 
 1. Inspect source diff, dependency audit, secret scan and package contents.
 2. Run lint, build, strict typechecks, semantic tests, CLI tests, packed consumer and production browser tests.

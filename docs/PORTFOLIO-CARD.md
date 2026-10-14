@@ -10,6 +10,10 @@ Pipeline: two snapshots → validated typed keys → indexed comparison → fiel
 
 Engineering: typed composite keys preserve identity; missing/null/empty remain different; a worker owns heavy state; packages are installed from tarballs outside the repository. Describe tested limits from PERFORMANCE.md, not a hypothetical scale claim.
 
-Source/demo/release links and a real synthetic screenshot will be finalized after release. Existing `portfolio-constellation` and `seoshiro.github.io` are unchanged.
+Source: https://github.com/seoshiro/rowtrace. Demo: https://seoshiro.github.io/rowtrace/ (release verification recorded in RELEASE.md). Packages: https://github.com/seoshiro/rowtrace/releases/tag/v0.1.0.
+
+Real synthetic screenshot: [desktop result](../evidence/ui/result-1440.png); [narrow viewport](../evidence/ui/result-320.png). These are actual browser screenshots, not device photographs.
+
+Existing `portfolio-constellation` and `seoshiro.github.io` are unchanged. This card is prepared only; it has not been published to the portfolio.
 
 Authorship: built with Codex assistance and the listed open-source dependencies. No adoption, user-research, security-certification or physical-device claim.

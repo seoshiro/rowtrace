@@ -1,0 +1,241 @@
+{
+  "kind": "automated-live-browser-audit",
+  "manualExploratory": false,
+  "url": "https://seoshiro.github.io/rowtrace/",
+  "expectedCommit": "9543ba55d2a4ecc22d4de75e388e53dda83c4a73",
+  "platform": "win32",
+  "node": "v24.18.0",
+  "started": "2026-10-14T15:14:28.237Z",
+  "passes": [
+    {
+      "number": 1,
+      "context": "fresh browser process + fresh isolated context",
+      "browser": "156.0.8078.4",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "touchEmulation": false,
+      "checks": [
+        "L01/L12 cold canonical entry and exact published SHA",
+        "L03/L04 computed demo golden and A17 before/after details",
+        "L05 combined filter/search/empty/recovery",
+        "L06 actual file-input CSV and typed flat JSON import",
+        "L07 duplicate keys block complete export",
+        "L08 actual HTML download, inert hostile text, offline rendering, canary absent from requests/storage/URL",
+        "L09/L10 scripted keyboard activation; RU/KK/EN preserve data/search; reset and reanalysis",
+        "L11 actual 20,000-row bounded import cancellation at CPU4x, native Worker.terminate observed, immediate demo recovery",
+        "L02 canonical refresh and RAM-only reset",
+        "L02 real main/worker/demo assets loaded; no HTTP4xx/5xx, console errors or uncaught page errors"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-dYhF9Fdq.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-Cw4W7sxe.css",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/before.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/after.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/before.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/after.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/before.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/after.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/before.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/after.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-dYhF9Fdq.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-Cw4W7sxe.css",
+          "body": ""
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedResponses": [],
+      "version": {
+        "version": "0.1.0",
+        "commit": "9543ba55d2a4ecc22d4de75e388e53dda83c4a73"
+      },
+      "status": "PASS",
+      "requestCount": 23,
+      "requestSha256": "05de8198b70f2b999fd6440884c033ff3d3cd5cf48f10c9421584f542236f0e2"
+    },
+    {
+      "number": 2,
+      "context": "fresh browser process + fresh isolated context",
+      "browser": "156.0.8078.4",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "touchEmulation": true,
+      "checks": [
+        "L01/L12 cold canonical entry and exact published SHA",
+        "L03/L04 computed demo golden and A17 before/after details",
+        "L05 combined filter/search/empty/recovery",
+        "L06 actual file-input CSV and typed flat JSON import",
+        "Independent cold mobile viewport: CSV/JSON imports, actual JSON/HTML downloads, long headers/values readable, no document overflow",
+        "L02 real main/worker/demo assets loaded; no HTTP4xx/5xx, console errors or uncaught page errors"
+      ],
+      "requests": [
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-dYhF9Fdq.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/index-Cw4W7sxe.css",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/before.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/demo/after.csv",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        },
+        {
+          "method": "GET",
+          "url": "https://seoshiro.github.io/rowtrace/assets/worker-CLEdIp-8.js",
+          "body": ""
+        }
+      ],
+      "consoleErrors": [],
+      "pageErrors": [],
+      "failedResponses": [],
+      "version": {
+        "version": "0.1.0",
+        "commit": "9543ba55d2a4ecc22d4de75e388e53dda83c4a73"
+      },
+      "status": "PASS",
+      "requestCount": 9,
+      "requestSha256": "4199828a53cae27dba0c377d2288f16ee3a3d63ffd2ab1cb136d8006dc81ae15"
+    }
+  ],
+  "limitations": [
+    "Fresh browser contexts and touch/viewport emulation on Windows; no physical phone or native screen reader.",
+    "Real CUA exploratory remains blocked by launcher HRESULT 0x80070003."
+  ],
+  "status": "PASS",
+  "finished": "2026-10-14T15:14:41.213Z"
+}

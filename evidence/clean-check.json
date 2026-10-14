@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "commit": "9543ba55d2a4ecc22d4de75e388e53dda83c4a73",
+  "node": "v24.18.0",
+  "platform": "win32 10.0.26200",
+  "checkedAt": "2026-10-14T15:05:40.730Z",
+  "steps": [
+    {
+      "command": "git clone --quiet --no-hardlinks <source> <clean-checkout>",
+      "exit": 0,
+      "milliseconds": 729
+    },
+    {
+      "command": "git rev-parse HEAD",
+      "exit": 0,
+      "milliseconds": 66
+    },
+    {
+      "command": "node npm ci --no-fund",
+      "exit": 0,
+      "milliseconds": 5229
+    },
+    {
+      "command": "node npm run lint",
+      "exit": 0,
+      "milliseconds": 3563
+    },
+    {
+      "command": "node npm run build",
+      "exit": 0,
+      "milliseconds": 6411
+    },
+    {
+      "command": "node npm run typecheck",
+      "exit": 0,
+      "milliseconds": 6895
+    },
+    {
+      "command": "node npm run test",
+      "exit": 0,
+      "milliseconds": 8183
+    },
+    {
+      "command": "node npm run test:packed",
+      "exit": 0,
+      "milliseconds": 21909
+    },
+    {
+      "command": "node npm run scan:secrets",
+      "exit": 0,
+      "milliseconds": 560
+    }
+  ]
+}
