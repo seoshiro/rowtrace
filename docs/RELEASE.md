@@ -46,4 +46,4 @@ This is the first release; no earlier deployed ROWTRACE version exists. Retain t
 
 Manual exploratory browser control is currently blocked by the local tool's missing Windows platform directory (HRESULT0x80070003), before any browser opens. Playwright automation, screenshots, accessibility scans and viewport emulation remain separate evidence. No physical phone, native Safari/iPhone, true desktop200% zoom, real screen-reader session or physical Windows Ctrl+C claim is made. Validation and performance documents record actual runs and remaining gaps.
 
-The main portfolio and its publisher are unchanged. A draft card is in PORTFOLIO-CARD.md.
+The main portfolio and its publisher are unchanged.

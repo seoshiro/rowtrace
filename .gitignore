@@ -12,3 +12,6 @@ artifacts/
 !.env.example
 *.log
 .DS_Store
+
+# Local QA, benchmark and audit output
+evidence/
