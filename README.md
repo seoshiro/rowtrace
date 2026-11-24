@@ -8,7 +8,7 @@ ROWTRACE is a local data review tool with a shared TypeScript engine, browser wo
 
 Version **0.1.0** provides independently installable core and CLI tarballs. The npm packages are **not published**. See the [release record](docs/RELEASE.md) for exact source/CI identity, live checks and remaining validation boundaries.
 
-![ROWTRACE workbench with two file inputs and synthetic demo](evidence/ui/initial-1440.png)
+![ROWTRACE workbench with two file inputs and synthetic demo](docs/screenshots/initial-1440.png)
 
 ## Run locally
 
@@ -79,17 +79,45 @@ npm run test:e2e
 npm run scan:secrets
 ```
 
-`test:packed` installs both tarballs and a compiler in a temporary directory outside this repository. Browser tests exercise production output. Automated assertions, exploratory browser operation and physical-device tests have distinct statuses in [VALIDATION](docs/VALIDATION.md).
+`test:packed` installs both tarballs and a compiler in a temporary directory outside this repository. Browser tests exercise production output.
+
+## Architecture
+
+One comparison engine, two front ends. The browser app and the CLI call exactly the same parser, comparator and serializers, so a report produced in the browser and one produced in CI are byte-identical for the same input.
+
+```mermaid
+flowchart TB
+  subgraph Core ["packages/core — pure ESM, no DOM / fs / network"]
+    Parse["parse.ts<br/>CSV (Papa Parse) · strict JSON"] --> Validate["validation.ts<br/>limits, scalar + key rules"]
+    Validate --> Compare["compare.ts<br/>typed key index (Map)"]
+    Compare --> Serialize["serialize.ts<br/>canonical JSON v1"]
+    Compare --> Html["html.ts<br/>inert HTML report"]
+  end
+  subgraph Web ["apps/web"]
+    App["App.tsx<br/>bounded projections"] <-->|"protocol.ts<br/>checked messages"| Worker["worker.ts<br/>owns data + report"]
+  end
+  subgraph Cli ["packages/cli"]
+    Args["strict args / config"] --> NodeWorker["Node worker<br/>SIGINT-cancellable"]
+    NodeWorker --> Out["atomic no-clobber output"]
+  end
+  Worker --> Core
+  NodeWorker --> Core
+```
+
+### Key decisions
+
+**ADR-1. Shared core package instead of separate browser and CLI logic.** Comparison semantics (typed composite keys, missing vs null vs empty, deterministic ordering) are the product. Keeping them in one framework-free package removes drift between surfaces and lets `test:packed` verify the real installed tarballs. Trade-off: core must avoid Node and DOM APIs entirely, so file reading and downloads live in each front end.
+
+**ADR-2. Heavy data lives in a worker, React holds only projections.** Source text, indexes and full reports stay inside the worker; the UI receives a summary, a 50-row page or one record. Cancelling a job terminates the worker, because a synchronous parser cannot receive a cooperative cancel message. Trade-off: every interaction is a message round trip, guarded by job generations and request counters against stale responses.
+
+**ADR-3. Explicit keys and hard limits instead of fuzzy matching.** Duplicate or missing keys block the comparison rather than picking an arbitrary match, and inputs above 16 MiB / 20,000 rows / 1,000,000 cells are rejected with a clear error. Trade-off: some real-world files need cleaning first, but a reported change is always attributable to a specific key.
 
 ## Engineering notes
 
 - [Semantics](docs/SEMANTICS.md): types, identity, errors and deterministic ordering.
 - [Architecture](docs/ARCHITECTURE.md): package boundaries, worker ownership and tradeoffs.
 - [Security](docs/SECURITY.md): threats, mitigations and limitations.
-- [Hosting costs](docs/COSTS.md): public free hosting configuration and service limits.
 - [Performance](docs/PERFORMANCE.md): measured timing, memory and bundle sizes.
-- [Research](docs/RESEARCH.md): existing tools, references and original scope.
 - [Release](docs/RELEASE.md): exact artifacts, deployment and rollback.
-- [Progress](docs/PROGRESS.md): current factual state.
 
 Built with Codex assistance and open-source dependencies. MIT licensed; [upstream notices](apps/web/public/THIRD_PARTY_LICENSES.txt) are also included in the static distribution. No adoption, certification or field-performance claim is made.
